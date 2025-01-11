@@ -6,7 +6,7 @@
 /*   By: mberila <mberila@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 15:46:30 by mberila           #+#    #+#             */
-/*   Updated: 2025/01/10 16:10:16 by mberila          ###   ########.fr       */
+/*   Updated: 2025/01/11 10:16:38 by mberila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,13 @@ int exit_point(t_game *game)
     exit(0);
 }
 
-int main()
+int main(int ac, char *av[])
 {
     t_game game;
     
+    if(ac != 2)
+        return (0);
+    ft_memeset(&game, 0, sizeof(t_game));
     game.mlx_ptr = mlx_init();
     if(game.mlx_ptr == NULL)
         return (1);

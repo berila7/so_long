@@ -8,6 +8,7 @@
 # include <fcntl.h>      // For open
 # include <stdio.h>      // For perror
 # include "./get_next_line.h"
+# include "../lib/libft/libft.h"
 
 // Define game constants 
 # define TILE_SIZE 50
@@ -31,7 +32,10 @@ typedef struct	s_game
 {
 	void	*mlx_ptr;
 	void	*mlx_win;
+	void	*player;
+
 	char	**map;
+	
 	size_t	map_h;
 	size_t	map_w;
 	size_t	win_h;
