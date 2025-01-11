@@ -33,16 +33,20 @@ typedef struct	s_game
 	void	*mlx_ptr;
 	void	*mlx_win;
 	void	*player;
+	void	*floor;
+	void	*wall;
+	void	*collectible;
+	void	*exit;
 
 	char	**map;
-	
-	size_t	map_h;
-	size_t	map_w;
-	size_t	win_h;
-	size_t	win_w;
+
+	int		map_h;
+	int		map_w;
+	int		win_h;
+	int		win_w;
+	int		collectibles;
 	int		player_x;
 	int		player_y;
-	int		player_frame;
 	int		fd;
 }	t_game;
 
