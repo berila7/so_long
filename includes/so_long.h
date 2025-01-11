@@ -50,7 +50,9 @@ typedef struct	s_game
 	int		fd;
 }	t_game;
 
-void draw_map(void *mlx, void *mlx_win);
-int map_height();
-int map_width();
+int 	map_reading(t_game *game, char *av[]);
+void	put_to_window(t_game *game);
+void    put_images(t_game *game);
+int 	exit_point(t_game *game);
+
 #endif

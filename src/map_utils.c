@@ -6,7 +6,7 @@
 /*   By: mberila <mberila@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/05 14:06:39 by mberila           #+#    #+#             */
-/*   Updated: 2025/01/11 10:30:49 by mberila          ###   ########.fr       */
+/*   Updated: 2025/01/11 12:42:51 by mberila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ static int	width_of_map(char *string)
 static int	add_line(t_game *game, char *line)
 {
 	char		**temporary_map;
-	size_t		i;
+	int 		i;
 
 	if (!line)
 		return (0);
@@ -111,14 +111,25 @@ int map_reading(t_game *game, char *av[])
 	game->fd = open(av[1], O_RDONLY);
 	if (game->fd < 0)
 		return (0);
-	
+	game->map_h = 0;
 	while (1)
 	{
 		readmap = get_next_line(game->fd);
+        if (!readmap)
+            break;
+        // Debug print
+        printf("Reading line: %s", readmap);
 		if(!add_line(game, readmap))
+        {
+            free(readmap);
 			break ;
+        }
+        // Debug print
+        printf("Added line %d to map\n", game->map_h);
 	}
 	close(game->fd);
+    // Debug print
+    printf("Final map height: %d\n", game->map_h);
 	game->map_w = width_of_map(game->map[0]);
 	return (1);
 }
