@@ -6,7 +6,7 @@
 /*   By: mberila <mberila@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 15:46:30 by mberila           #+#    #+#             */
-/*   Updated: 2025/01/11 12:07:30 by mberila          ###   ########.fr       */
+/*   Updated: 2025/01/11 17:28:53 by mberila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,8 @@ int main(int ac, char *av[])
 	printf("\nMap height: %d\n", game->map_h);
     put_images(game);
     put_to_window(game);
-
+    mlx_key_hook(game->mlx_win, controls_working, game);
+    mlx_hook(game->mlx_win, 17, 0, (void *)exit, 0);
     // draw_map(game.mlx_ptr, game.mlx_win);
     mlx_loop(game->mlx_ptr);
     mlx_destroy_window(game->mlx_ptr, game->mlx_win);

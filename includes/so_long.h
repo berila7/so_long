@@ -48,11 +48,13 @@ typedef struct	s_game
 	int		player_x;
 	int		player_y;
 	int		fd;
+	int		counter;
 }	t_game;
 
 int 	map_reading(t_game *game, char *av[]);
 void	put_to_window(t_game *game);
 void    put_images(t_game *game);
 int 	exit_point(t_game *game);
+int 	controls_working(int command, t_game *game);
 
 #endif
