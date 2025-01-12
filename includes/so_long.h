@@ -30,7 +30,7 @@
 
 typedef struct	s_game
 {
-	void	*mlx_ptr;
+	void	*mlx;
 	void	*mlx_win;
 	void	*player;
 	void	*floor;
@@ -44,7 +44,7 @@ typedef struct	s_game
 	int		map_w;
 	int		win_h;
 	int		win_w;
-	int		collectibles;
+	int		collectables;
 	int		player_x;
 	int		player_y;
 	int		fd;

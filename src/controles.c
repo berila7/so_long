@@ -6,7 +6,7 @@
 /*   By: mberila <mberila@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/11 15:37:36 by mberila           #+#    #+#             */
-/*   Updated: 2025/01/11 17:59:12 by mberila          ###   ########.fr       */
+/*   Updated: 2025/01/12 10:12:56 by mberila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,14 +23,14 @@ static int	move_player(t_game *game, int new_x, int new_y)
         return (0);
     else if (target_cell == 'E')
     {
-        if (game->collectibles != 0)
+        if (game->collectables != 0)
             return (0);
         printf("\nYou Have Won, Congrats!\n");
         exit_point(game);
     }
     else if (target_cell == 'C')
     {
-        game->collectibles--; /* Collect the item */
+        game->collectables--; /* Collect the item */
     }
     game->map[game->player_y][game->player_x] = '0'; /* Clear old position */
     game->player_x = new_x;
@@ -38,7 +38,7 @@ static int	move_player(t_game *game, int new_x, int new_y)
     game->map[new_y][new_x] = 'P'; /* Place player in new position */
     game->counter++;
     printf("Steps Taken: %i\n", game->counter);
-    printf("Collectables Remaining: %i\n", game->collectibles);
+    printf("Collectables Remaining: %i\n", game->collectables);
     return (1);
 }
 
