@@ -1,7 +1,6 @@
 #ifndef SO_LONG_H
 # define SO_LONG_H
 
-/* Standard C Libraries we'll need throughout the project */
 # include <mlx.h>        // For graphics handling
 # include <stdlib.h>     // For memory allocation and exit
 # include <unistd.h>     // For read and write
@@ -25,7 +24,15 @@
 # define ERR_ARGS "Error\nInvalid number of arguments"
 # define ERR_FILE "Error\nCould not open file"
 # define ERR_MAP "Error\nInvalid map"
-# define ERR_MLX "Error\nMLX initialization failed"
+
+/* Colors*/
+# define RESET   "\033[0m"
+# define RED     "\033[31m"
+# define GREEN   "\033[32m"
+# define YELLOW  "\033[33m"
+# define BLUE    "\033[34m"
+# define MAGENTA "\033[35m"
+# define CYAN    "\033[36m"
 
 typedef struct	s_pos
 {
@@ -54,6 +61,8 @@ typedef struct	s_game
 	int		player_y;
 	int		fd;
 	int		counter;
+	int		player_count;
+	int		exit_count;
 }	t_game;
 
 int 	map_reading(t_game *game, char *av[]);
@@ -62,5 +71,6 @@ void    put_images(t_game *game);
 int 	exit_point(t_game *game);
 int 	controls_working(int command, t_game *game);
 t_pos	*get_char_pos(t_game *game, char c);
+void	check_errors(t_game *game);
 
 #endif

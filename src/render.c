@@ -6,7 +6,7 @@
 /*   By: mberila <mberila@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/11 10:17:03 by mberila           #+#    #+#             */
-/*   Updated: 2025/01/12 11:30:14 by mberila          ###   ########.fr       */
+/*   Updated: 2025/01/12 14:39:46 by mberila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,5 @@ void	put_to_window(t_game *game)
 		}
 		y++;
 	}
-	// mlx_put_image_to_window(game->mlx, game->mlx_win, game->floor, x * TILE_SIZE, y * TILE_SIZE);
 	put_player(game);
 }
