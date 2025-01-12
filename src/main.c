@@ -6,7 +6,7 @@
 /*   By: mberila <mberila@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 15:46:30 by mberila           #+#    #+#             */
-/*   Updated: 2025/01/12 10:19:29 by mberila          ###   ########.fr       */
+/*   Updated: 2025/01/12 11:42:01 by mberila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,11 @@ int main(int ac, char *av[])
     if (!game)
         return (1);
     map_reading(game, av);
+    t_pos *p_pos = get_char_pos(game, 'P');
+    game->player_x = p_pos->x;
+    game->player_y = p_pos->y;
+    printf("player x %d", game->player_x);
+    printf("player y %d", game->player_y);
     game->mlx = mlx_init();
     if(game->mlx == NULL)
         return (1);

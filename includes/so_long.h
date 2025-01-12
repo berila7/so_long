@@ -27,6 +27,11 @@
 # define ERR_MAP "Error\nInvalid map"
 # define ERR_MLX "Error\nMLX initialization failed"
 
+typedef struct	s_pos
+{
+	int	x;
+	int	y;
+}	t_pos;
 
 typedef struct	s_game
 {
@@ -56,5 +61,6 @@ void	put_to_window(t_game *game);
 void    put_images(t_game *game);
 int 	exit_point(t_game *game);
 int 	controls_working(int command, t_game *game);
+t_pos	*get_char_pos(t_game *game, char c);
 
 #endif

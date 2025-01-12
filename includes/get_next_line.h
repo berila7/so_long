@@ -6,14 +6,14 @@
 /*   By: mberila <mberila@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 11:03:19 by mberila           #+#    #+#             */
-/*   Updated: 2025/01/10 12:10:04 by mberila          ###   ########.fr       */
+/*   Updated: 2025/01/12 12:11:02 by mberila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef GET_NEXT_LINE_H
 # define GET_NEXT_LINE_H
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 10
+#  define BUFFER_SIZE 15
 # endif
 # include <stdlib.h>
 # include <unistd.h>

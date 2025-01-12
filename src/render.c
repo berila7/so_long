@@ -6,22 +6,20 @@
 /*   By: mberila <mberila@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/11 10:17:03 by mberila           #+#    #+#             */
-/*   Updated: 2025/01/12 10:18:47 by mberila          ###   ########.fr       */
+/*   Updated: 2025/01/12 11:30:14 by mberila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "../includes/so_long.h"
 
-void    put_player(t_game *game, int x, int y)
+void    put_player(t_game *game)
 {
-    mlx_put_image_to_window(game->mlx, game->mlx_win, game->player, y * TILE_SIZE, x * TILE_SIZE);
-    game->player_x = x;
-    game->player_y = y;
+    mlx_put_image_to_window(game->mlx, game->mlx_win, game->player, game->player_x * TILE_SIZE, game->player_y * TILE_SIZE);
 }
 
-void    put_collectable(t_game *game, int x, int y)
+void    put_collectable(t_game *game, int y, int x)
 {
-    mlx_put_image_to_window(game->mlx, game->mlx_win, game->collectible, y * TILE_SIZE, x * TILE_SIZE);
+    mlx_put_image_to_window(game->mlx, game->mlx_win, game->collectible, x * TILE_SIZE, y * TILE_SIZE);
     game->collectables++;
 }
 
@@ -39,37 +37,33 @@ void    put_images(t_game *game)
 
 void	put_to_window(t_game *game)
 {
-	int	x;
 	int	y;
+	int	x;
 
 	game->collectables = 0;
-	x = 0;
-	while (x < game->map_h)
+	y = 0;
+	while (y < game->map_h)
 	{
-		y = 0;
-		while (game->map[x][y])
+		x = 0;
+		while (game->map[y][x])
 		{
-			if(game->map[x][y] == '1')
-				mlx_put_image_to_window(game->mlx, game->mlx_win, game->wall, y * TILE_SIZE, x * TILE_SIZE);
-			if(game->map[x][y] == 'C')
+			if(game->map[y][x] == '1')
+				mlx_put_image_to_window(game->mlx, game->mlx_win, game->wall, x * TILE_SIZE, y * TILE_SIZE);
+			else if(game->map[y][x] == 'C')
 			{
-				mlx_put_image_to_window(game->mlx, game->mlx_win, game->floor, y * TILE_SIZE, x * TILE_SIZE);
-				put_collectable(game, x, y);
+				mlx_put_image_to_window(game->mlx, game->mlx_win, game->floor, x * TILE_SIZE, y * TILE_SIZE);
+				put_collectable(game, y, x);
 			}
-			if(game->map[x][y] == 'P')
+			else if (game->map[y][x] == 'E')
 			{
-				mlx_put_image_to_window(game->mlx, game->mlx_win, game->floor, y * TILE_SIZE, x * TILE_SIZE);
-				put_player(game, x, y);
+				mlx_put_image_to_window(game->mlx, game->mlx_win, game->exit, x * TILE_SIZE, y * TILE_SIZE);
 			}
-			if (game->map[x][y] == 'E')
-			{
-				mlx_put_image_to_window(game->mlx, game->mlx_win, game->exit, y * TILE_SIZE, x * TILE_SIZE);
-			}
-			if (game->map[x][y] == '0')
-				mlx_put_image_to_window(game->mlx, game->mlx_win, game->floor, y * TILE_SIZE, x * TILE_SIZE);
-			y++;
+			else
+				mlx_put_image_to_window(game->mlx, game->mlx_win, game->floor, x * TILE_SIZE, y * TILE_SIZE);
+			x++;
 		}
-		x++;
+		y++;
 	}
-	
+	// mlx_put_image_to_window(game->mlx, game->mlx_win, game->floor, x * TILE_SIZE, y * TILE_SIZE);
+	put_player(game);
 }
