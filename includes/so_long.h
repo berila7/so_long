@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   so_long.h                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mberila <mberila@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/01/16 15:11:52 by mberila           #+#    #+#             */
+/*   Updated: 2025/01/16 15:14:12 by mberila          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef SO_LONG_H
 # define SO_LONG_H
 
@@ -34,13 +46,13 @@
 # define MAGENTA "\033[35m"
 # define CYAN    "\033[36m"
 
-typedef struct	s_pos
+typedef struct s_pos
 {
 	int	x;
 	int	y;
 }	t_pos;
 
-typedef struct	s_game
+typedef struct s_game
 {
 	void	*mlx;
 	void	*mlx_win;
@@ -63,7 +75,15 @@ typedef struct	s_game
 	int		counter;
 	int		player_count;
 	int		exit_count;
+	int		error_flag;
 }	t_game;
+
+// Flood fill structure to track visited positions
+typedef struct s_fill {
+    char **visited;
+    int collectibles_reached;
+    int exit_reached;
+}	t_fill;
 
 int 	map_reading(t_game *game, char *av[]);
 void	put_to_window(t_game *game);
@@ -71,6 +91,7 @@ void    put_images(t_game *game);
 int 	exit_point(t_game *game);
 int 	controls_working(int command, t_game *game);
 t_pos	*get_char_pos(t_game *game, char c);
-void	check_errors(t_game *game);
+int		check_errors(t_game *game);
+void 	cleanup(t_game *game);
 
 #endif

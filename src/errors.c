@@ -6,20 +6,12 @@
 /*   By: mberila <mberila@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/12 15:04:45 by mberila           #+#    #+#             */
-/*   Updated: 2025/01/12 16:15:14 by mberila          ###   ########.fr       */
+/*   Updated: 2025/01/16 15:06:50 by mberila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
 
-// Flood fill structure to track visited positions
-typedef struct s_fill {
-    char **visited;
-    int collectibles_reached;
-    int exit_reached;
-} t_fill;
-
-// Initialize flood fill structure
 static t_fill *init_flood_fill(t_game *game)
 {
     t_fill *fill;
@@ -53,7 +45,7 @@ static t_fill *init_flood_fill(t_game *game)
     return (fill);
 }
 
-// Recursive flood fill to validate path
+// // Recursive flood fill to validate path
 static void flood_fill(t_game *game, t_fill *fill, int y, int x)
 {
     // Check boundaries and walls
@@ -76,7 +68,7 @@ static void flood_fill(t_game *game, t_fill *fill, int y, int x)
     flood_fill(game, fill, y, x + 1); // Right
 }
 
-// Validate path from player to all collectibles and exit
+// // Validate path from player to all collectibles and exit
 static int validate_path(t_game *game)
 {
     t_fill *fill;
@@ -117,16 +109,18 @@ static int validate_path(t_game *game)
     return (valid);
 }
 
-static int validate_rectangular(t_game *game)
+static int is_rectangular(t_game *game)
 {
     int i;
-    size_t len;
+    int len;
 
-    len = ft_strlen(game->map[0]);
-    for (i = 1; i < game->map_h; i++)
+    i = 0;
+    while (i < game->map_h)
     {
-        if (ft_strlen(game->map[i]) != len)
-            return (0);
+        len = ft_strlen(game->map[i]);
+        if (len != game->map_w)
+            return (-1);
+        i++;
     }
     return (1);
 }
@@ -214,10 +208,10 @@ static void character_valid(t_game *game)
     }
 }
 
-void check_errors(t_game *game)
+int check_errors(t_game *game)
 {
     // Check if map is rectangular
-    if (!validate_rectangular(game))
+    if (!is_rectangular(game))
     {
         printf(RED "\nError: Map is not rectangular\n" RESET);
         exit_point(game);
@@ -235,4 +229,6 @@ void check_errors(t_game *game)
         printf(RED "\nError: Invalid path - not all collectibles or exit are reachable\n" RESET);
         exit_point(game);
     }
+    return (0);
 }
+
