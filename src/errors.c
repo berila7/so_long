@@ -6,7 +6,7 @@
 /*   By: mberila <mberila@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/12 15:04:45 by mberila           #+#    #+#             */
-/*   Updated: 2025/01/16 15:06:50 by mberila          ###   ########.fr       */
+/*   Updated: 2025/01/17 11:44:06 by mberila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -216,14 +216,8 @@ int check_errors(t_game *game)
         printf(RED "\nError: Map is not rectangular\n" RESET);
         exit_point(game);
     }
-
-    // Check walls
     if_walls(game);
-
-    // Validate characters and counts
     character_valid(game);
-
-    // Validate path to collectibles and exit
     if (!validate_path(game))
     {
         printf(RED "\nError: Invalid path - not all collectibles or exit are reachable\n" RESET);

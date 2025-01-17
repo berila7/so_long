@@ -6,7 +6,7 @@
 /*   By: mberila <mberila@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 15:46:30 by mberila           #+#    #+#             */
-/*   Updated: 2025/01/16 14:53:16 by mberila          ###   ########.fr       */
+/*   Updated: 2025/01/17 11:48:48 by mberila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,10 @@ int main(int ac, char *av[])
 
     if (ac != 2)
         return (0);
-    game = (t_game *)malloc(sizeof(t_game));
-    if (!game)
-        return (1);
+    game =malloc(sizeof(t_game));
+    ft_bzero(game,sizeof(t_game));
     map_reading(game, av);
     check_errors(game);
-
     t_pos *p_pos = get_char_pos(game, 'P');
     game->player_x = p_pos->x;
     game->player_y = p_pos->y;
