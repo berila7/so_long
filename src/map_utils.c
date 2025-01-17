@@ -6,7 +6,7 @@
 /*   By: mberila <mberila@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/05 14:06:39 by mberila           #+#    #+#             */
-/*   Updated: 2025/01/17 11:24:15 by mberila          ###   ########.fr       */
+/*   Updated: 2025/01/17 16:12:55 by mberila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ int map_reading(t_game *game, char *av[])
             readmap[ft_strlen(readmap) - 1] = '\0';
 
         // Debug print to check each line
-        // printf("Reading line: %s\n", readmap);
+        printf("Reading line: %s\n", readmap);
 
         if (!add_line(game, readmap))
         {
@@ -86,9 +86,9 @@ int map_reading(t_game *game, char *av[])
     close(game->fd);
 
     // Debug print to check the final map
-    // printf("Final map height: %d\n", game->map_h);
-    // for (int i = 0; i < game->map_h; i++)
-    //     printf("Map line %d: %s\n", i, game->map[i]);
+    printf("Final map height: %d\n", game->map_h);
+    for (int i = 0; i < game->map_h; i++)
+        printf("Map line %d: %s\n", i, game->map[i]);
 
     game->map_w = width_of_map(game->map[0]);
     return (1);

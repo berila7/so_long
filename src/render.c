@@ -6,7 +6,7 @@
 /*   By: mberila <mberila@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/11 10:17:03 by mberila           #+#    #+#             */
-/*   Updated: 2025/01/16 10:13:20 by mberila          ###   ########.fr       */
+/*   Updated: 2025/01/17 16:31:33 by mberila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,10 @@ void    put_player(t_game *game)
     mlx_put_image_to_window(game->mlx, game->mlx_win, game->player, game->player_x * TILE_SIZE, game->player_y * TILE_SIZE);
 }
 
-void    put_collectable(t_game *game, int y, int x)
+void    put_collectible(t_game *game, int y, int x)
 {
     mlx_put_image_to_window(game->mlx, game->mlx_win, game->collectible, x * TILE_SIZE, y * TILE_SIZE);
-    game->collectables++;
+    game->collectibles++;
 }
 
 void    put_images(t_game *game)
@@ -40,7 +40,12 @@ void	put_to_window(t_game *game)
 	int	y;
 	int	x;
 
-	game->collectables = 0;
+	if (!game || !game->mlx || !game->mlx_win || !game->map || !game->wall || !game->floor || !game->exit)
+	{
+		ft_putstr_fd("Error: Null or invalid pointer in game struct.\n", 2);
+		return;
+	}
+	game->collectibles = 0;
 	y = 0;
 	while (y < game->map_h)
 	{
@@ -52,7 +57,7 @@ void	put_to_window(t_game *game)
 			else if(game->map[y][x] == 'C')
 			{
 				mlx_put_image_to_window(game->mlx, game->mlx_win, game->floor, x * TILE_SIZE, y * TILE_SIZE);
-				put_collectable(game, y, x);
+				put_collectible(game, y, x);
 			}
 			else if (game->map[y][x] == 'E')
 			{

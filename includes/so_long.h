@@ -6,7 +6,7 @@
 /*   By: mberila <mberila@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/16 15:11:52 by mberila           #+#    #+#             */
-/*   Updated: 2025/01/17 10:55:41 by mberila          ###   ########.fr       */
+/*   Updated: 2025/01/17 16:32:09 by mberila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,14 +68,13 @@ typedef struct s_game
 	int		map_w;
 	int		win_h;
 	int		win_w;
-	int		collectables;
+	int		collectibles;
 	int		player_x;
 	int		player_y;
 	int		fd;
 	int		counter;
 	int		player_count;
 	int		exit_count;
-	int		error;
 }	t_game;
 
 // Flood fill structure to track visited positions

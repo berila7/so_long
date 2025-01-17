@@ -6,7 +6,7 @@
 /*   By: mberila <mberila@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/16 11:34:24 by mberila           #+#    #+#             */
-/*   Updated: 2025/01/17 12:04:52 by mberila          ###   ########.fr       */
+/*   Updated: 2025/01/17 16:31:33 by mberila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,19 @@ void cleanup(t_game *game)
 
     if (!game)
         return;
-
     if (game->mlx && game->mlx_win)
     {
         mlx_destroy_window(game->mlx, game->mlx_win);
         game->mlx_win = NULL;
     }
-
+    if(game->player)
+        mlx_destroy_image(game->mlx, game->player);
+	if(game->wall)
+        mlx_destroy_image(game->mlx, game->wall);
+    if(game->collectible)
+        mlx_destroy_image(game->mlx, game->collectible);
+    if(game->exit)
+        mlx_destroy_image(game->mlx, game->exit);
     if (game->map)
     {
         line = 0;

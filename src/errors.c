@@ -6,7 +6,7 @@
 /*   By: mberila <mberila@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/12 15:04:45 by mberila           #+#    #+#             */
-/*   Updated: 2025/01/17 11:44:06 by mberila          ###   ########.fr       */
+/*   Updated: 2025/01/17 16:31:33 by mberila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,7 @@ static int validate_path(t_game *game)
     flood_fill(game, fill, player_y, player_x);
 
     // Check if all collectibles and exit are reachable
-    valid = (fill->collectibles_reached == game->collectables && 
+    valid = (fill->collectibles_reached == game->collectibles && 
              fill->exit_reached);
 
     // Cleanup
@@ -174,7 +174,7 @@ static void count_checker(t_game *game, int height, int width)
 
     // Count game elements
     if (current == 'C')
-        game->collectables++;
+        game->collectibles++;
     else if (current == 'P')
         game->player_count++;
     else if (current == 'E')
@@ -185,7 +185,7 @@ static void character_valid(t_game *game)
 {
     int height, width;
 
-    game->collectables = 0;
+    game->collectibles = 0;
     game->player_count = 0;
     game->exit_count = 0;
 
@@ -197,13 +197,13 @@ static void character_valid(t_game *game)
         }
     }
 
-    if (game->player_count != 1 || game->collectables < 1 || 
+    if (game->player_count != 1 || game->collectibles < 1 || 
         game->exit_count != 1)
     {
         printf("\nError: Invalid map configuration\n");
         printf("Required: 1 player, at least 1 collectible, 1 exit\n");
         printf("Found: %d player(s), %d collectible(s), %d exit(s)\n",
-               game->player_count, game->collectables, game->exit_count);
+               game->player_count, game->collectibles, game->exit_count);
         exit_point(game);
     }
 }

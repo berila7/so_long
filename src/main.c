@@ -6,7 +6,7 @@
 /*   By: mberila <mberila@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 15:46:30 by mberila           #+#    #+#             */
-/*   Updated: 2025/01/17 11:48:48 by mberila          ###   ########.fr       */
+/*   Updated: 2025/01/17 16:22:37 by mberila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,14 +24,13 @@ int main(int ac, char *av[])
 
     if (ac != 2)
         return (0);
-    game =malloc(sizeof(t_game));
+    game = malloc(sizeof(t_game));
     ft_bzero(game,sizeof(t_game));
     map_reading(game, av);
     check_errors(game);
     t_pos *p_pos = get_char_pos(game, 'P');
     game->player_x = p_pos->x;
     game->player_y = p_pos->y;
-
     game->mlx = mlx_init();
     if (!game->mlx)
         exit_point(game);
@@ -44,9 +43,7 @@ int main(int ac, char *av[])
     put_images(game);
     put_to_window(game);
     mlx_key_hook(game->mlx_win, controls_working, game);
-    mlx_hook(game->mlx_win, 17, 0, (void *)exit_point, game);
+    mlx_hook(game->mlx_win, 17, 0, exit_point, game);
     mlx_loop(game->mlx);
-    free(game->mlx);
-    free(game);
     return (0);
 }
