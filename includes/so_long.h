@@ -6,7 +6,7 @@
 /*   By: mberila <mberila@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/16 15:11:52 by mberila           #+#    #+#             */
-/*   Updated: 2025/01/17 16:32:09 by mberila          ###   ########.fr       */
+/*   Updated: 2025/01/18 18:48:55 by mberila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 # include <fcntl.h>      // For open
 # include <stdio.h>      // For perror
 # include "./get_next_line.h"
-# include "../lib/libft/libft.h"
+# include "../../lib/libft/libft.h"
 
 // Define game constants 
 # define TILE_SIZE 50
