@@ -6,7 +6,7 @@
 /*   By: mberila <mberila@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/11 10:17:03 by mberila           #+#    #+#             */
-/*   Updated: 2025/01/17 16:31:33 by mberila          ###   ########.fr       */
+/*   Updated: 2025/01/18 16:44:14 by mberila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,11 @@ void    put_images(t_game *game)
 	int	tailSize;
 	
 	tailSize = TILE_SIZE;
-	game->floor = mlx_xpm_file_to_image(game->mlx, "./assets/images/floor.xpm", &tailSize, &tailSize);
-	game->wall = mlx_xpm_file_to_image(game->mlx, "./assets/images/wall.xpm", &tailSize, &tailSize);
-	game->player = mlx_xpm_file_to_image(game->mlx, "./assets/images/player.xpm", &tailSize, &tailSize);
-	game->exit = mlx_xpm_file_to_image(game->mlx, "./assets/images/exit.xpm", &tailSize, &tailSize);
-	game->collectible = mlx_xpm_file_to_image(game->mlx, "./assets/images/collectible.xpm", &tailSize, &tailSize);
+	game->floor = mlx_xpm_file_to_image(game->mlx, "./assets/textures/floor.xpm", &tailSize, &tailSize);
+	game->wall = mlx_xpm_file_to_image(game->mlx, "./assets/textures/wall.xpm", &tailSize, &tailSize);
+	game->player = mlx_xpm_file_to_image(game->mlx, "./assets/textures/player.xpm", &tailSize, &tailSize);
+	game->exit = mlx_xpm_file_to_image(game->mlx, "./assets/textures/exit.xpm", &tailSize, &tailSize);
+	game->collectible = mlx_xpm_file_to_image(game->mlx, "./assets/textures/collectible.xpm", &tailSize, &tailSize);
 }
 
 void	put_to_window(t_game *game)
@@ -42,8 +42,8 @@ void	put_to_window(t_game *game)
 
 	if (!game || !game->mlx || !game->mlx_win || !game->map || !game->wall || !game->floor || !game->exit)
 	{
-		ft_putstr_fd("Error: Null or invalid pointer in game struct.\n", 2);
-		return;
+		ft_putstr_fd(RED"Error: Null or invalid pointer in game struct or you missing file.\n" RESET, 2);
+		exit_point(game);
 	}
 	game->collectibles = 0;
 	y = 0;
@@ -61,7 +61,12 @@ void	put_to_window(t_game *game)
 			}
 			else if (game->map[y][x] == 'E')
 			{
-				mlx_put_image_to_window(game->mlx, game->mlx_win, game->exit, x * TILE_SIZE, y * TILE_SIZE);
+				if (game->exit)
+				{
+					mlx_put_image_to_window(game->mlx, game->mlx_win, game->exit, x * TILE_SIZE, y * TILE_SIZE);
+				}
+				else
+					printf(RED"Error: The wall image dosen't exist"RESET);
 			}
 			else
 				mlx_put_image_to_window(game->mlx, game->mlx_win, game->floor, x * TILE_SIZE, y * TILE_SIZE);

@@ -6,7 +6,7 @@
 /*   By: mberila <mberila@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/12 15:04:45 by mberila           #+#    #+#             */
-/*   Updated: 2025/01/17 16:31:33 by mberila          ###   ########.fr       */
+/*   Updated: 2025/01/18 15:50:12 by mberila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,8 @@ static int validate_path(t_game *game)
     int valid;
 
     // Find player position
-    for (i = 0; i < game->map_h; i++)
+	i = 0;
+    while (i < game->map_h)
     {
         char *pos = ft_strchr(game->map[i], 'P');
         if (pos)
@@ -87,6 +88,7 @@ static int validate_path(t_game *game)
             player_x = pos - game->map[i];
             break;
         }
+		i++;
     }
 
     fill = init_flood_fill(game);
@@ -101,8 +103,12 @@ static int validate_path(t_game *game)
              fill->exit_reached);
 
     // Cleanup
-    for (i = 0; i < game->map_h; i++)
+	i = 0;
+    while (i < game->map_h)
+	{
         free(fill->visited[i]);
+		i++;
+	}
     free(fill->visited);
     free(fill);
 
@@ -130,10 +136,12 @@ static int horizontalwall(t_game *game)
     int j;
 
     // Check first and last row
-    for (j = 0; j < game->map_w; j++)
+	j = 0;
+    while (j < game->map_w)
     {
         if (game->map[0][j] != '1' || game->map[game->map_h - 1][j] != '1')
             return (0);
+		j++;
     }
     return (1);
 }
@@ -142,10 +150,12 @@ static int verticalwall(t_game *game)
 {
     int y;
 
-    for (y = 0; y < game->map_h; y++)
+	y = 0;
+    while (y < game->map_h)
     {
         if (game->map[y][0] != '1' || game->map[y][game->map_w - 1] != '1')
             return (0);
+		y++;
     }
     return (1);
 }
@@ -188,13 +198,16 @@ static void character_valid(t_game *game)
     game->collectibles = 0;
     game->player_count = 0;
     game->exit_count = 0;
-
-    for (height = 0; height < game->map_h; height++)
+	height = 0;
+    while (height < game->map_h)
     {
-        for (width = 0; width < game->map_w; width++)
+		width = 0;
+        while (width < game->map_w)
         {
             count_checker(game, height, width);
+			width++;
         }
+		height++;
     }
 
     if (game->player_count != 1 || game->collectibles < 1 || 

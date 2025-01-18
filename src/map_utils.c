@@ -6,7 +6,7 @@
 /*   By: mberila <mberila@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/05 14:06:39 by mberila           #+#    #+#             */
-/*   Updated: 2025/01/17 16:12:55 by mberila          ###   ########.fr       */
+/*   Updated: 2025/01/18 16:43:41 by mberila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,18 +62,19 @@ int map_reading(t_game *game, char *av[])
         printf(RED "\nError: Could not open file\n" RESET);
         return (0);
     }
-
-    game->map_h = 0;
-    while (1)
+    readmap = get_next_line(game->fd);
+    if (!readmap)
     {
-        readmap = get_next_line(game->fd);
-        if (!readmap)
-            break;
-
+        printf(RED"Error: your map is EMPTY"RESET);
+        exit_point(game);
+    }
+    game->map_h = 0;
+    while (readmap)
+    {
         // Remove the newline character at the end of the line
         if (readmap[ft_strlen(readmap) - 1] == '\n')
             readmap[ft_strlen(readmap) - 1] = '\0';
-
+        // ft_substr(readmap, 0, ft_strlen(readmap))
         // Debug print to check each line
         printf("Reading line: %s\n", readmap);
 
@@ -81,14 +82,15 @@ int map_reading(t_game *game, char *av[])
         {
             free(readmap);
             break;
-        }
+        } 
+        readmap = get_next_line(game->fd);
     }
     close(game->fd);
 
     // Debug print to check the final map
-    printf("Final map height: %d\n", game->map_h);
-    for (int i = 0; i < game->map_h; i++)
-        printf("Map line %d: %s\n", i, game->map[i]);
+    // printf("Final map height: %d\n", game->map_h);
+    // for (int i = 0; i < game->map_h; i++)
+    //     printf("Map line %d: %s\n", i, game->map[i]);
 
     game->map_w = width_of_map(game->map[0]);
     return (1);
