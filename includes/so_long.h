@@ -6,7 +6,7 @@
 /*   By: mberila <mberila@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/16 15:11:52 by mberila           #+#    #+#             */
-/*   Updated: 2025/01/18 18:48:55 by mberila          ###   ########.fr       */
+/*   Updated: 2025/01/19 17:14:16 by mberila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,13 @@
 # define COLLECT 'C'
 # define EXIT 'E'
 # define PLAYER 'P'
+
+// Define keys
+# define KEYUP 13
+# define KEYDOWN 1
+# define KEYLEFT 0
+# define KEYRIGHT 2
+# define ESCKEY 53
 
 /* Error messages */
 # define ERR_ARGS "Error\nInvalid number of arguments"
@@ -78,19 +85,21 @@ typedef struct s_game
 }	t_game;
 
 // Flood fill structure to track visited positions
-typedef struct s_fill {
-    char **visited;
-    int collectibles_reached;
-    int exit_reached;
+
+typedef struct s_fill
+{
+	char	**visited;
+	int		collectibles_reached;
+	int		exit_reached;
 }	t_fill;
 
-int 	map_reading(t_game *game, char *av[]);
+int		map_reading(t_game *game, char *av[]);
 void	put_to_window(t_game *game);
-void    put_images(t_game *game);
-int 	exit_point(t_game *game);
-int 	controls_working(int command, t_game *game);
+void	put_images(t_game *game);
+int		exit_point(t_game *game);
+int		controls_working(int command, t_game *game);
 t_pos	*get_char_pos(t_game *game, char c);
 int		check_errors(t_game *game);
-void 	cleanup(t_game *game);
+void	cleanup(t_game *game);
 
 #endif
