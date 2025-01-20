@@ -1,30 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   errors_bonus.c                                     :+:      :+:    :+:   */
+/*   animate.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mberila <mberila@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/12 15:04:45 by mberila           #+#    #+#             */
-/*   Updated: 2025/01/20 19:57:08 by mberila          ###   ########.fr       */
+/*   Created: 2025/01/20 21:19:32 by mberila           #+#    #+#             */
+/*   Updated: 2025/01/20 21:36:45 by mberila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/so_long_bonus.h"
 
-int	check_errors(t_game *game)
+void	draw_steps(t_game *game)
 {
-	if (!is_rectangular (game))
-	{
-		printf(RED "\nError: Map is not rectangular\n" RESET);
-		exit_point (game);
+    char *steps;
+    char *prefix;
+    char *full_steps;
+
+    steps = ft_itoa(game->counter);
+    if(!steps)
+    {
+		printf("Allocation failed");
+		exit_point(game);
 	}
-	if_walls(game);
-	character_valid(game);
-	if (!validate_path (game))
-	{
-		printf(RED "\nError: Invalid path\n" RESET);
-		exit_point (game);
-	}
-	return (0);
+    prefix = "Steps: ";
+    full_steps = ft_strjoin(prefix, steps);
+    free(steps);
+    if(!full_steps)
+         exit_point(game);
+    mlx_string_put(game->mlx, game->mlx_win, 10, 10, 0xFFFFFF, full_steps);
+    free(full_steps);
+
 }

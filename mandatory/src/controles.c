@@ -6,7 +6,7 @@
 /*   By: mberila <mberila@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/11 15:37:36 by mberila           #+#    #+#             */
-/*   Updated: 2025/01/19 15:49:28 by mberila          ###   ########.fr       */
+/*   Updated: 2025/01/20 19:40:13 by mberila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,11 @@ static void	handle_cell_interaction(t_game *game, int y, int x)
 	}
 }
 
-static int	update_player_position(t_game *game, int y, int x)
+static int	move_player(t_game *game, int y, int x)
 {
+	handle_cell_interaction(game, y, x);
+	if (game->map[y][x] == '1')
+		return (0);
 	if (game->player_x != x || game->player_y != y)
 	{
 		game->counter++;
@@ -45,14 +48,6 @@ static int	update_player_position(t_game *game, int y, int x)
 	game->player_x = x;
 	game->player_y = y;
 	return (1);
-}
-
-static int	move_player(t_game *game, int y, int x)
-{
-	handle_cell_interaction(game, y, x);
-	if (game->map[y][x] == '1')
-		return (0);
-	return (update_player_position(game, y, x));
 }
 
 int	controls_working(int key, t_game *game)

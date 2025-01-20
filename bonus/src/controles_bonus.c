@@ -1,16 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   controles.c                                        :+:      :+:    :+:   */
+/*   controles_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mberila <mberila@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/11 15:37:36 by mberila           #+#    #+#             */
-/*   Updated: 2025/01/19 15:49:28 by mberila          ###   ########.fr       */
+/*   Updated: 2025/01/20 21:04:37 by mberila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/so_long.h"
+#include "../../includes/so_long_bonus.h"
+
+void	change_pl_im(t_game *game, int key)
+{
+	if (key == KEYUP)
+		game->player = game->pl_up;
+	else if (key == KEYRIGHT)
+		game->player = game->pl_r;
+	else if (key == KEYLEFT)
+		game->player = game->pl_l;
+	else if (key == KEYDOWN)
+	{
+		game->player = game->pl_dw;
+	}
+}
 
 static void	handle_cell_interaction(t_game *game, int y, int x)
 {
@@ -34,25 +48,24 @@ static void	handle_cell_interaction(t_game *game, int y, int x)
 	}
 }
 
-static int	update_player_position(t_game *game, int y, int x)
+static int	move_player(t_game *game, int y, int x, int key)
 {
+	handle_cell_interaction(game, y, x);
+	if (game->map[y][x] == '1')
+	{
+		change_pl_im(game, key);
+		return (0);
+	}
 	if (game->player_x != x || game->player_y != y)
 	{
 		game->counter++;
 		printf("Steps Taken: %i\n", game->counter);
 		printf("collectibles Remaining: %i\n", game->collectibles);
 	}
+	change_pl_im(game, key);
 	game->player_x = x;
 	game->player_y = y;
 	return (1);
-}
-
-static int	move_player(t_game *game, int y, int x)
-{
-	handle_cell_interaction(game, y, x);
-	if (game->map[y][x] == '1')
-		return (0);
-	return (update_player_position(game, y, x));
 }
 
 int	controls_working(int key, t_game *game)
@@ -72,7 +85,7 @@ int	controls_working(int key, t_game *game)
 		x--;
 	else if (key == KEYRIGHT)
 		x++;
-	if (move_player(game, y, x))
+	if (move_player(game, y, x, key))
 		put_to_window(game);
 	return (1);
 }

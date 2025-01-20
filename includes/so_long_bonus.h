@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.h                                          :+:      :+:    :+:   */
+/*   so_long_bonus.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mberila <mberila@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/16 15:11:52 by mberila           #+#    #+#             */
-/*   Updated: 2025/01/20 16:40:23 by mberila          ###   ########.fr       */
+/*   Updated: 2025/01/20 21:32:37 by mberila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SO_LONG_H
-# define SO_LONG_H
+#ifndef SO_LONG_BONUS_H
+# define SO_LONG_BONUS_H
 
 # include <mlx.h>        // For graphics handling
 # include <stdlib.h>     // For memory allocation and exit
@@ -64,6 +64,10 @@ typedef struct s_game
 	void	*mlx;
 	void	*mlx_win;
 	void	*player;
+	void	*pl_up;
+	void	*pl_r;
+	void	*pl_l;
+	void	*pl_dw;
 	void	*floor;
 	void	*wall;
 	void	*collectible;
@@ -97,7 +101,7 @@ int		map_reading(t_game *game, char *av[]);
 void	put_to_window(t_game *game);
 void	put_images(t_game *game);
 int		exit_point(t_game *game);
-int		controls_working(int command, t_game *game);
+int		controls_working(int key, t_game *game);
 t_pos	*get_char_pos(t_game *game, char c);
 int		check_errors(t_game *game);
 void	cleanup(t_game *game);
@@ -105,5 +109,5 @@ int		validate_path(t_game *game);
 int		is_rectangular(t_game *game);
 void	if_walls(t_game *game);
 void	character_valid(t_game *game);
-
+void	draw_steps(t_game *game);
 #endif

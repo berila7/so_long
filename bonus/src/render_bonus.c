@@ -6,11 +6,11 @@
 /*   By: mberila <mberila@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/11 10:17:03 by mberila           #+#    #+#             */
-/*   Updated: 2025/01/20 17:36:32 by mberila          ###   ########.fr       */
+/*   Updated: 2025/01/20 21:32:17 by mberila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/so_long.h"
+#include "../../includes/so_long_bonus.h"
 
 void	put_player(t_game *game)
 {
@@ -31,16 +31,24 @@ void	put_images(t_game *game)
 
 	tail_size = TILE_SIZE;
 	game->floor = mlx_xpm_file_to_image(game->mlx,
-			"./mandatory/textures/floor.xpm", &tail_size, &tail_size);
+			"./bonus/textures/floor.xpm", &tail_size, &tail_size);
 	game->wall = mlx_xpm_file_to_image(game->mlx,
-			"./mandatory/textures/wall.xpm", &tail_size, &tail_size);
+			"./bonus/textures/wall.xpm", &tail_size, &tail_size);
 	game->player = mlx_xpm_file_to_image(game->mlx,
-			"./mandatory/textures/player.xpm", &tail_size, &tail_size);
+			"./bonus/textures/player/player.xpm", &tail_size, &tail_size);
 	game->exit = mlx_xpm_file_to_image(game->mlx,
-			"./mandatory/textures/exit.xpm", &tail_size, &tail_size);
+			"./bonus/textures/exit.xpm", &tail_size, &tail_size);
 	game->collectible = mlx_xpm_file_to_image(game->mlx,
-			"./mandatory/textures/collectible.xpm",
+			"./bonus/textures/collectible.xpm",
 			&tail_size, &tail_size);
+	game->pl_up = mlx_xpm_file_to_image(game->mlx,
+			"./bonus/textures/player/pl_up.xpm", &tail_size, &tail_size);
+	game->pl_r = mlx_xpm_file_to_image(game->mlx,
+			"./bonus/textures/player/pl_r.xpm", &tail_size, &tail_size);
+	game->pl_l = mlx_xpm_file_to_image(game->mlx,
+			"./bonus/textures/player/pl_l.xpm", &tail_size, &tail_size);
+	game->pl_dw = mlx_xpm_file_to_image(game->mlx,
+			"./bonus/textures/player/pl_dw.xpm", &tail_size, &tail_size);
 }
 
 static void	render_map_tiles(t_game *game, int y, int x)
@@ -95,4 +103,5 @@ void	put_to_window(t_game *game)
 		y++;
 	}
 	put_player (game);
+	draw_steps(game);
 }
