@@ -6,7 +6,7 @@
 /*   By: mberila <mberila@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/16 15:11:52 by mberila           #+#    #+#             */
-/*   Updated: 2025/01/19 17:14:16 by mberila          ###   ########.fr       */
+/*   Updated: 2025/01/20 16:40:23 by mberila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,5 +101,9 @@ int		controls_working(int command, t_game *game);
 t_pos	*get_char_pos(t_game *game, char c);
 int		check_errors(t_game *game);
 void	cleanup(t_game *game);
+int		validate_path(t_game *game);
+int		is_rectangular(t_game *game);
+void	if_walls(t_game *game);
+void	character_valid(t_game *game);
 
 #endif
