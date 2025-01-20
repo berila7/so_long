@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   render.c                                           :+:      :+:    :+:   */
+/*   render_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mberila <mberila@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/11 10:17:03 by mberila           #+#    #+#             */
-/*   Updated: 2025/01/19 17:11:11 by mberila          ###   ########.fr       */
+/*   Updated: 2025/01/20 17:36:32 by mberila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,15 +31,15 @@ void	put_images(t_game *game)
 
 	tail_size = TILE_SIZE;
 	game->floor = mlx_xpm_file_to_image(game->mlx,
-			"./mandatory/assets/textures/floor.xpm", &tail_size, &tail_size);
+			"./mandatory/textures/floor.xpm", &tail_size, &tail_size);
 	game->wall = mlx_xpm_file_to_image(game->mlx,
-			"./mandatory/assets/textures/wall.xpm", &tail_size, &tail_size);
+			"./mandatory/textures/wall.xpm", &tail_size, &tail_size);
 	game->player = mlx_xpm_file_to_image(game->mlx,
-			"./mandatory/assets/textures/player.xpm", &tail_size, &tail_size);
+			"./mandatory/textures/player.xpm", &tail_size, &tail_size);
 	game->exit = mlx_xpm_file_to_image(game->mlx,
-			"./mandatory/assets/textures/exit.xpm", &tail_size, &tail_size);
+			"./mandatory/textures/exit.xpm", &tail_size, &tail_size);
 	game->collectible = mlx_xpm_file_to_image(game->mlx,
-			"./mandatory/assets/textures/collectible.xpm",
+			"./mandatory/textures/collectible.xpm",
 			&tail_size, &tail_size);
 }
 

@@ -6,20 +6,24 @@
 #    By: mberila <mberila@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/08 11:55:01 by mberila           #+#    #+#              #
-#    Updated: 2025/01/18 18:51:07 by mberila          ###   ########.fr        #
+#    Updated: 2025/01/20 17:31:44 by mberila          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME    = so_long
+NAME = so_long
+NAME_BONUS = so_long_bonus
+
 LIBFT_DIR = ./lib/libft
 GNL_DIR = ./lib/get_next_line
 
 LIBFT_LIB = $(LIBFT_DIR)/libft.a
 
-SRCS    = $(wildcard ./mandatory/src/*.c $(GNL_DIR)/*.c $(LIBFT_DIR)/*.c)
-OBJ_DIR = obj
+SRCS_MAN = $(wildcard ./mandatory/src/*.c $(GNL_DIR)/*.c $(LIBFT_DIR)/*.c)
+OBJS_MAN = $(SRCS_MAN:.c=.o)
+
+SRCS_BON = $(wildcard ./bonus/src/*.c $(GNL_DIR)/*.c $(LIBFT_DIR)/*.c)
+OBJS_BON = $(SRCS_BON:.c=.o)
 # Remove the leading ./ from the object paths
-OBJ     = $(patsubst ./%.c, $(OBJ_DIR)/%.o, $(SRCS))
 
 CC      = cc
 MLX     = -lmlx -framework OpenGL -framework AppKit
@@ -28,22 +32,30 @@ CFLAGS  = -Wall -Wextra -Werror -I$(LIBFT_DIR)
 
 # Rules
 all: $(NAME)
+bonus: $(NAME_BONUS)
 
-$(NAME): $(OBJ)
-	ar rcs $(LIBFT_LIB) $(OBJ_DIR)/lib/libft/*.o
-	$(CC) $(OBJ) $(MLX) $(LIBFT_LIB) -o $(NAME)
+$(NAME): $(LIBFT_LIB) $(OBJS_MAN)
+	$(CC) $(CFLAGS) $^ $(MLX) $(LIBFT_LIB) -o $(NAME)
+	
+$(NAME_BONUS): $(LIBFT_LIB) $(OBJS_BON)
+	$(CC) $(CFLAGS) $^ $(MLX) $(LIBFT_LIB) -o $(NAME_BONUS)
 
-$(OBJ_DIR)/%.o: %.c
-	@mkdir -p $(dir $@)
-	$(CC) $(CFLAGS) -c $< -o $@
+mandatory/%.o: mandatory/%.c mandatory/so_long.h
+	$(CC) $(CFLAGS) -Imlx -Ilib -c $< -o $@
+	
+bonus/%.o: bonus/%_bonus.c includes/so_long_bonus.h
+	$(CC) $(CFLAGS) -Imlx -Ilib -c $< -o $@
+
+$(LIBFT_LIB):
+	$(MAKE) -C $(LIBFT_DIR)
 
 clean:
-	$(RM) $(OBJ_DIR)
+	$(RM) $(OBJS_MAN) $(OBJS_BON)
+	$(MAKE) -C $(LIBFT_DIR) clean
 
 fclean: clean
-	$(RM) $(NAME)
-	$(RM) $(LIBFT_LIB)
+	$(RM) $(NAME) $(NAME_BONUS)
+	$(MAKE) -C $(LIBFT_DIR) fclean
 
 re: fclean all
 
-.PHONY: all clean fclean re
