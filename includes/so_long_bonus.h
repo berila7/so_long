@@ -6,7 +6,7 @@
 /*   By: mberila <mberila@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/16 15:11:52 by mberila           #+#    #+#             */
-/*   Updated: 2025/01/21 11:58:24 by mberila          ###   ########.fr       */
+/*   Updated: 2025/01/21 15:11:54 by mberila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,11 @@ typedef struct s_game
 	void	*c_3;
 	void	*c_4;
 	void	*c_5;
+	void	*e_1;
+	void	*e_2;
+	void	*e_3;
+	void	*e_4;
+	void	*e_5;
 	void	*floor;
 	void	*wall;
 	void	*collectible;
@@ -93,7 +98,11 @@ typedef struct s_game
 	int		player_count;
 	int		exit_count;
 	int		coin_frame;
+	int		enemy_frame;
 	int		frame_counter;
+    int		enemy_direction;
+	int	enemy_x;    // New: enemy's x position
+    int	enemy_y;    // New: enemy's y position
 }	t_game;
 
 // Flood fill structure to track visited positions

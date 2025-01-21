@@ -6,7 +6,7 @@
 /*   By: mberila <mberila@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 21:19:32 by mberila           #+#    #+#             */
-/*   Updated: 2025/01/21 12:01:30 by mberila          ###   ########.fr       */
+/*   Updated: 2025/01/21 15:14:15 by mberila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ void	animate(t_game *g)
 	{
 		g->frame_counter = 0;
 		g->coin_frame = (g->coin_frame + 1) % 5;
+		g->enemy_frame = (g->enemy_frame + 1) % 5;
 	}
 }
 

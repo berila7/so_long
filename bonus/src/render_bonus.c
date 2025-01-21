@@ -6,7 +6,7 @@
 /*   By: mberila <mberila@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/11 10:17:03 by mberila           #+#    #+#             */
-/*   Updated: 2025/01/21 11:52:28 by mberila          ###   ########.fr       */
+/*   Updated: 2025/01/21 15:17:59 by mberila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ void	put_player(t_game *game)
 		game->player_x * TILE_SIZE, game->player_y * TILE_SIZE);
 }
 
-
 void	put_collectible(t_game *game, int y, int x)
 {
 	void *coin_image;
@@ -26,16 +25,34 @@ void	put_collectible(t_game *game, int y, int x)
 	if (game->coin_frame == 0)
 		coin_image = game->c_1;
 	else if (game->coin_frame == 1)
-			coin_image = game->c_2;
+		coin_image = game->c_2;
 	else if (game->coin_frame == 2)
-			coin_image = game->c_3;
+		coin_image = game->c_3;
 	else if (game->coin_frame == 3)
-			coin_image = game->c_4;
+		coin_image = game->c_4;
 	else
 		coin_image = game->c_5;
     mlx_put_image_to_window(game->mlx, game->mlx_win, coin_image,
         x * TILE_SIZE, y * TILE_SIZE);
     game->collectibles++;
+}
+
+void	put_enemy(t_game *game, int y, int x)
+{
+	void *enemy_image;
+
+	if (game->coin_frame == 0)
+		enemy_image = game->e_1;
+	else if (game->coin_frame == 1)
+		enemy_image = game->e_2;
+	else if (game->coin_frame == 2)
+		enemy_image = game->e_3;
+	else if (game->coin_frame == 3)
+		enemy_image = game->e_4;
+	else
+		enemy_image = game->e_5;
+    mlx_put_image_to_window(game->mlx, game->mlx_win, enemy_image,
+        x * TILE_SIZE, y * TILE_SIZE);
 }
 
 void	put_images(t_game *game)
@@ -72,6 +89,16 @@ void	put_images(t_game *game)
 			"./bonus/textures/collectable/c_4.xpm", &tail_size, &tail_size);
 	game->c_5 = mlx_xpm_file_to_image(game->mlx,
 			"./bonus/textures/collectable/c_5.xpm", &tail_size, &tail_size);
+	game->e_1 = mlx_xpm_file_to_image(game->mlx,
+			"./bonus/textures/enemy/e_1.xpm", &tail_size, &tail_size);
+	game->e_2 = mlx_xpm_file_to_image(game->mlx,
+			"./bonus/textures/enemy/e_2.xpm", &tail_size, &tail_size);
+	game->e_3 = mlx_xpm_file_to_image(game->mlx,
+			"./bonus/textures/enemy/e_3.xpm", &tail_size, &tail_size);
+	game->e_4 = mlx_xpm_file_to_image(game->mlx,
+			"./bonus/textures/enemy/e_4.xpm", &tail_size, &tail_size);
+	game->e_5 = mlx_xpm_file_to_image(game->mlx,
+			"./bonus/textures/enemy/e_5.xpm", &tail_size, &tail_size);
 }
 
 static void	render_map_tiles(t_game *game, int y, int x)
@@ -84,6 +111,12 @@ static void	render_map_tiles(t_game *game, int y, int x)
 		mlx_put_image_to_window(game->mlx, game->mlx_win,
 			game->floor, x * TILE_SIZE, y * TILE_SIZE);
 		put_collectible(game, y, x);
+	}
+	else if (game->map[y][x] == 'X')
+	{
+		mlx_put_image_to_window(game->mlx, game->mlx_win,
+			game->floor, x * TILE_SIZE, y * TILE_SIZE);
+		put_enemy(game, y, x);
 	}
 	else if (game->map[y][x] == 'E')
 	{

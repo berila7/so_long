@@ -6,7 +6,7 @@
 /*   By: mberila <mberila@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/11 15:37:36 by mberila           #+#    #+#             */
-/*   Updated: 2025/01/21 11:54:14 by mberila          ###   ########.fr       */
+/*   Updated: 2025/01/21 14:47:44 by mberila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,11 +33,16 @@ static void	handle_cell_interaction(t_game *game, int y, int x)
 	target_cell = game->map[y][x];
 	if (target_cell == '1')
 		return ;
+	if (target_cell == 'X')
+	{
+		printf(RED"\nYou LOSE!\n"RESET);
+		exit_point(game);
+	}
 	if (target_cell == 'E')
 	{
 		if (game->collectibles == 0)
 		{
-			printf("\nYou Have Won, Congrats!\n");
+			printf(RED"\nYou Have Won, Congrats!\n"RESET);
 			exit_point(game);
 		}
 	}

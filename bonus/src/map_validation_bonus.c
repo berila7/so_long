@@ -6,7 +6,7 @@
 /*   By: mberila <mberila@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 16:36:06 by mberila           #+#    #+#             */
-/*   Updated: 2025/01/20 19:57:32 by mberila          ###   ########.fr       */
+/*   Updated: 2025/01/21 14:12:46 by mberila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ static void	count_checker(t_game *game, int height, int width)
 
 	current = game->map[height][width];
 	if (current != '1' && current != '0' && current != 'P'
-		&& current != 'E' && current != 'C' && current != '\n')
+		&& current != 'E' && current != 'C' && current != 'X' && current != '\n')
 	{
 		printf(RED"\nError: Invalid character '%c' at position [%d][%d]\n",
 			current, height, width);
