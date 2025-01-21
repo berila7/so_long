@@ -6,7 +6,7 @@
 /*   By: mberila <mberila@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 15:46:30 by mberila           #+#    #+#             */
-/*   Updated: 2025/01/20 19:57:24 by mberila          ###   ########.fr       */
+/*   Updated: 2025/01/21 11:55:18 by mberila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,11 +63,12 @@ static int	init_mlx(t_game *game)
 	return (1);
 }
 
-static void	start_game(t_game *game)
+static void start_game(t_game *game)
 {
-	mlx_key_hook(game->mlx_win, controls_working, game);
-	mlx_hook(game->mlx_win, 17, 0, exit_point, game);
-	mlx_loop(game->mlx);
+    mlx_key_hook(game->mlx_win, controls_working, game);
+    mlx_hook(game->mlx_win, 17, 0, exit_point, game);
+    mlx_loop_hook(game->mlx, (int(*)(void*))put_to_window, game);
+    mlx_loop(game->mlx);
 }
 
 int	main(int ac, char *av[])

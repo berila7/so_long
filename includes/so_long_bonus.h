@@ -6,7 +6,7 @@
 /*   By: mberila <mberila@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/16 15:11:52 by mberila           #+#    #+#             */
-/*   Updated: 2025/01/20 21:32:37 by mberila          ###   ########.fr       */
+/*   Updated: 2025/01/21 11:58:24 by mberila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 
 // Define game constants 
 # define TILE_SIZE 50
+# define DELAY 6
 # define WIN_TITLE "King's Treasure"
 
 // Define map components
@@ -68,6 +69,11 @@ typedef struct s_game
 	void	*pl_r;
 	void	*pl_l;
 	void	*pl_dw;
+	void	*c_1;
+	void	*c_2;
+	void	*c_3;
+	void	*c_4;
+	void	*c_5;
 	void	*floor;
 	void	*wall;
 	void	*collectible;
@@ -86,6 +92,8 @@ typedef struct s_game
 	int		counter;
 	int		player_count;
 	int		exit_count;
+	int		coin_frame;
+	int		frame_counter;
 }	t_game;
 
 // Flood fill structure to track visited positions
@@ -110,4 +118,6 @@ int		is_rectangular(t_game *game);
 void	if_walls(t_game *game);
 void	character_valid(t_game *game);
 void	draw_steps(t_game *game);
+void	put_collectible(t_game *game, int y, int x);
+void	animate(t_game *game);
 #endif

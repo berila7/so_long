@@ -6,7 +6,7 @@
 /*   By: mberila <mberila@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/11 15:37:36 by mberila           #+#    #+#             */
-/*   Updated: 2025/01/20 21:04:37 by mberila          ###   ########.fr       */
+/*   Updated: 2025/01/21 11:54:14 by mberila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,6 @@ int	controls_working(int key, t_game *game)
 		x--;
 	else if (key == KEYRIGHT)
 		x++;
-	if (move_player(game, y, x, key))
-		put_to_window(game);
+	move_player(game, y, x, key);
 	return (1);
 }

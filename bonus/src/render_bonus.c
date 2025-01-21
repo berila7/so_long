@@ -6,7 +6,7 @@
 /*   By: mberila <mberila@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/11 10:17:03 by mberila           #+#    #+#             */
-/*   Updated: 2025/01/20 21:32:17 by mberila          ###   ########.fr       */
+/*   Updated: 2025/01/21 11:52:28 by mberila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,24 @@ void	put_player(t_game *game)
 		game->player_x * TILE_SIZE, game->player_y * TILE_SIZE);
 }
 
+
 void	put_collectible(t_game *game, int y, int x)
 {
-	mlx_put_image_to_window(game->mlx, game->mlx_win, game->collectible,
-		x * TILE_SIZE, y * TILE_SIZE);
-	game->collectibles++;
+	void *coin_image;
+
+	if (game->coin_frame == 0)
+		coin_image = game->c_1;
+	else if (game->coin_frame == 1)
+			coin_image = game->c_2;
+	else if (game->coin_frame == 2)
+			coin_image = game->c_3;
+	else if (game->coin_frame == 3)
+			coin_image = game->c_4;
+	else
+		coin_image = game->c_5;
+    mlx_put_image_to_window(game->mlx, game->mlx_win, coin_image,
+        x * TILE_SIZE, y * TILE_SIZE);
+    game->collectibles++;
 }
 
 void	put_images(t_game *game)
@@ -49,6 +62,16 @@ void	put_images(t_game *game)
 			"./bonus/textures/player/pl_l.xpm", &tail_size, &tail_size);
 	game->pl_dw = mlx_xpm_file_to_image(game->mlx,
 			"./bonus/textures/player/pl_dw.xpm", &tail_size, &tail_size);
+	game->c_1 = mlx_xpm_file_to_image(game->mlx,
+			"./bonus/textures/collectable/c_1.xpm", &tail_size, &tail_size);
+	game->c_2 = mlx_xpm_file_to_image(game->mlx,
+			"./bonus/textures/collectable/c_2.xpm", &tail_size, &tail_size);
+	game->c_3 = mlx_xpm_file_to_image(game->mlx,
+			"./bonus/textures/collectable/c_3.xpm", &tail_size, &tail_size);
+	game->c_4 = mlx_xpm_file_to_image(game->mlx,
+			"./bonus/textures/collectable/c_4.xpm", &tail_size, &tail_size);
+	game->c_5 = mlx_xpm_file_to_image(game->mlx,
+			"./bonus/textures/collectable/c_5.xpm", &tail_size, &tail_size);
 }
 
 static void	render_map_tiles(t_game *game, int y, int x)
@@ -103,5 +126,6 @@ void	put_to_window(t_game *game)
 		y++;
 	}
 	put_player (game);
+	animate(game);
 	draw_steps(game);
 }
