@@ -6,7 +6,7 @@
 /*   By: mberila <mberila@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/05 14:06:39 by mberila           #+#    #+#             */
-/*   Updated: 2025/01/20 19:57:28 by mberila          ###   ########.fr       */
+/*   Updated: 2025/01/23 16:27:42 by mberila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ static int	process_map_lines(t_game *game, char *readmap)
 		trimmed_line = ft_strtrim(readmap, "\n");
 		free(readmap);
 		readmap = trimmed_line;
-		printf("Reading line: %s\n", readmap);
+		ft_printf("Reading line: %s\n", readmap);
 		if (!add_line(game, readmap))
 		{
 			free(readmap);
@@ -76,13 +76,13 @@ int	map_reading(t_game *game, char *av[])
 	game->fd = open(av[1], O_RDONLY);
 	if (game->fd < 0)
 	{
-		printf(RED "\nError: Could not open file\n" RESET);
+		ft_printf(RED "\nError: Could not open file\n" RESET);
 		return (0);
 	}
 	readmap = get_next_line(game->fd);
 	if (!readmap)
 	{
-		printf(RED"Error: your map is EMPTY"RESET);
+		ft_printf(RED"Error: your map is EMPTY"RESET);
 		exit_point(game);
 	}
 	game->map_h = 0;

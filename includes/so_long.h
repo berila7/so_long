@@ -6,7 +6,7 @@
 /*   By: mberila <mberila@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/16 15:11:52 by mberila           #+#    #+#             */
-/*   Updated: 2025/01/20 16:40:23 by mberila          ###   ########.fr       */
+/*   Updated: 2025/01/23 16:21:55 by mberila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # include <stdio.h>      // For perror
 # include "./get_next_line.h"
 # include "../../lib/libft/libft.h"
+# include "../../lib/ft_printf/ft_printf.h"
 
 // Define game constants 
 # define TILE_SIZE 50
@@ -58,6 +59,7 @@ typedef struct s_pos
 	int	x;
 	int	y;
 }	t_pos;
+
 
 typedef struct s_game
 {

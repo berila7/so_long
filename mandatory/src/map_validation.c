@@ -6,7 +6,7 @@
 /*   By: mberila <mberila@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 16:36:06 by mberila           #+#    #+#             */
-/*   Updated: 2025/01/20 16:39:48 by mberila          ###   ########.fr       */
+/*   Updated: 2025/01/23 16:29:15 by mberila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ void	if_walls(t_game *game)
 {
 	if (!validate_map_borders(game))
 	{
-		printf(RED "\nError: Map is missing walls\n" RESET);
+		ft_printf(RED "\nError: Map is missing walls\n" RESET);
 		exit_point(game);
 	}
 }
@@ -67,7 +67,7 @@ static void	count_checker(t_game *game, int height, int width)
 	if (current != '1' && current != '0' && current != 'P'
 		&& current != 'E' && current != 'C' && current != '\n')
 	{
-		printf(RED"\nError: Invalid character '%c' at position [%d][%d]\n",
+		ft_printf(RED"\nError: Invalid character '%c' at position [%d][%d]\n",
 			current, height, width);
 		exit_point(game);
 	}
@@ -101,8 +101,8 @@ void	character_valid(t_game *game)
 	if (game->player_count != 1 || game->collectibles < 1
 		|| game->exit_count != 1)
 	{
-		printf("\nError: Invalid map configuration\n");
-		printf("Found: %d player(s), %d collectible(s), %d exit(s)\n",
+		ft_printf("\nError: Invalid map configuration\n");
+		ft_printf("Found: %d player(s), %d collectible(s), %d exit(s)\n",
 			game->player_count, game->collectibles, game->exit_count);
 		exit_point(game);
 	}

@@ -6,7 +6,7 @@
 /*   By: mberila <mberila@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/11 10:17:03 by mberila           #+#    #+#             */
-/*   Updated: 2025/01/21 15:17:59 by mberila          ###   ########.fr       */
+/*   Updated: 2025/01/23 16:28:14 by mberila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,10 +37,15 @@ void	put_collectible(t_game *game, int y, int x)
     game->collectibles++;
 }
 
+// void	move_enemy(t_game *s_game)
+// {
+	
+// }
+
 void	put_enemy(t_game *game, int y, int x)
 {
 	void *enemy_image;
-
+	// move_enemy();
 	if (game->coin_frame == 0)
 		enemy_image = game->e_1;
 	else if (game->coin_frame == 1)
@@ -126,7 +131,7 @@ static void	render_map_tiles(t_game *game, int y, int x)
 				game->exit, x * TILE_SIZE, y * TILE_SIZE);
 		}
 		else
-			printf(RED"Error: The exit image dosen't exist"RESET);
+			ft_printf(RED"Error: The exit image dosen't exist"RESET);
 	}
 	else
 		mlx_put_image_to_window(game->mlx, game->mlx_win,
@@ -158,7 +163,12 @@ void	put_to_window(t_game *game)
 		}
 		y++;
 	}
-	put_player (game);
+}
+int    update_game(t_game *game)
+{
 	animate(game);
+    put_to_window(game);
 	draw_steps(game);
+    put_player (game);
+    return (0);
 }

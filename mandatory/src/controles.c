@@ -6,7 +6,7 @@
 /*   By: mberila <mberila@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/11 15:37:36 by mberila           #+#    #+#             */
-/*   Updated: 2025/01/20 19:40:13 by mberila          ###   ########.fr       */
+/*   Updated: 2025/01/23 16:28:41 by mberila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static void	handle_cell_interaction(t_game *game, int y, int x)
 	{
 		if (game->collectibles == 0)
 		{
-			printf("\nYou Have Won, Congrats!\n");
+			ft_printf("\nYou Have Won, Congrats!\n");
 			exit_point(game);
 		}
 	}
@@ -42,8 +42,8 @@ static int	move_player(t_game *game, int y, int x)
 	if (game->player_x != x || game->player_y != y)
 	{
 		game->counter++;
-		printf("Steps Taken: %i\n", game->counter);
-		printf("collectibles Remaining: %i\n", game->collectibles);
+		ft_printf("Steps Taken: %i\n", game->counter);
+		ft_printf("collectibles Remaining: %i\n", game->collectibles);
 	}
 	game->player_x = x;
 	game->player_y = y;

@@ -6,7 +6,7 @@
 /*   By: mberila <mberila@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 16:36:06 by mberila           #+#    #+#             */
-/*   Updated: 2025/01/21 14:12:46 by mberila          ###   ########.fr       */
+/*   Updated: 2025/01/23 16:28:07 by mberila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ void	if_walls(t_game *game)
 {
 	if (!validate_map_borders(game))
 	{
-		printf(RED "\nError: Map is missing walls\n" RESET);
+		ft_printf(RED "\nError: Map is missing walls\n" RESET);
 		exit_point(game);
 	}
 }
@@ -67,7 +67,7 @@ static void	count_checker(t_game *game, int height, int width)
 	if (current != '1' && current != '0' && current != 'P'
 		&& current != 'E' && current != 'C' && current != 'X' && current != '\n')
 	{
-		printf(RED"\nError: Invalid character '%c' at position [%d][%d]\n",
+		ft_printf(RED"\nError: Invalid character '%c' at position [%d][%d]\n",
 			current, height, width);
 		exit_point(game);
 	}
@@ -77,33 +77,36 @@ static void	count_checker(t_game *game, int height, int width)
 		game->player_count++;
 	else if (current == 'E')
 		game->exit_count++;
+	else if (current == 'X')
+		game->enemy_count++;
 }
 
-void	character_valid(t_game *game)
+void	character_valid(t_game *g)
 {
 	int	height;
 	int	width;
 
-	game->collectibles = 0;
-	game->player_count = 0;
-	game->exit_count = 0;
+	g->collectibles = 0;
+	g->player_count = 0;
+	g->exit_count = 0;
+	g->enemy_count = 0;
 	height = 0;
-	while (height < game->map_h)
+	while (height < g->map_h)
 	{
 		width = 0;
-		while (width < game->map_w)
+		while (width < g->map_w)
 		{
-			count_checker(game, height, width);
+			count_checker(g, height, width);
 			width++;
 		}
 		height++;
 	}
-	if (game->player_count != 1 || game->collectibles < 1
-		|| game->exit_count != 1)
+	if (g->player_count != 1 || g->collectibles < 1
+		|| g->exit_count != 1 || g->enemy_count != 1)
 	{
-		printf("\nError: Invalid map configuration\n");
-		printf("Found: %d player(s), %d collectible(s), %d exit(s)\n",
-			game->player_count, game->collectibles, game->exit_count);
-		exit_point(game);
+		ft_printf("\nError: Invalid map configuration\n");
+		ft_printf("Found: %d P, %d C, %d E, %d X\n",
+			g->player_count, g->collectibles, g->exit_count, g->enemy_count);
+		exit_point(g);
 	}
 }

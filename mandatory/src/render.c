@@ -6,7 +6,7 @@
 /*   By: mberila <mberila@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/11 10:17:03 by mberila           #+#    #+#             */
-/*   Updated: 2025/01/20 17:35:26 by mberila          ###   ########.fr       */
+/*   Updated: 2025/01/23 16:29:19 by mberila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ static void	render_map_tiles(t_game *game, int y, int x)
 				game->exit, x * TILE_SIZE, y * TILE_SIZE);
 		}
 		else
-			printf(RED"Error: The exit image dosen't exist"RESET);
+			ft_printf(RED"Error: The exit image dosen't exist"RESET);
 	}
 	else
 		mlx_put_image_to_window(game->mlx, game->mlx_win,

@@ -6,7 +6,7 @@
 /*   By: mberila <mberila@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 15:46:30 by mberila           #+#    #+#             */
-/*   Updated: 2025/01/19 16:00:32 by mberila          ###   ########.fr       */
+/*   Updated: 2025/01/23 16:28:53 by mberila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,19 +70,24 @@ static void	start_game(t_game *game)
 	mlx_loop(game->mlx);
 }
 
+void f()
+{
+	system("leaks so_long");
+}
+
 int	main(int ac, char *av[])
 {
 	t_game	*game;
-
+	atexit(f);
 	game = init_game(ac, av);
 	if (!game)
 	{
-		printf("Error Initializing Game\n");
+		ft_printf("Error Initializing Game\n");
 		return (1);
 	}
 	if (!init_mlx(game))
 	{
-		printf("Error Initializing MLX\n");
+		ft_printf("Error Initializing MLX\n");
 		return (1);
 	}
 	start_game(game);

@@ -6,7 +6,7 @@
 /*   By: mberila <mberila@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 15:46:30 by mberila           #+#    #+#             */
-/*   Updated: 2025/01/21 15:14:22 by mberila          ###   ########.fr       */
+/*   Updated: 2025/01/23 16:27:26 by mberila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ int	exit_point(t_game *game)
 	cleanup(game);
 	exit(0);
 }
+
+
 
 static t_game	*init_game(int ac, char *av[])
 {
@@ -67,23 +69,28 @@ static void start_game(t_game *game)
 {
     mlx_key_hook(game->mlx_win, controls_working, game);
     mlx_hook(game->mlx_win, 17, 0, exit_point, game);
-    mlx_loop_hook(game->mlx, (int(*)(void*))put_to_window, game);
+    mlx_loop_hook(game->mlx, (int(*)(void*))update_game, game);
     mlx_loop(game->mlx);
+}
+
+void f()
+{
+	system("leaks so_long");
 }
 
 int	main(int ac, char *av[])
 {
 	t_game	*game;
-
+	atexit(f);
 	game = init_game(ac, av);
 	if (!game)
 	{
-		printf("Error Initializing Game\n");
+		ft_printf("Error Initializing Game\n");
 		return (1);
 	}
 	if (!init_mlx(game))
 	{
-		printf("Error Initializing MLX\n");
+		ft_printf("Error Initializing MLX\n");
 		return (1);
 	}
 	start_game(game);

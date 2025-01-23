@@ -6,7 +6,7 @@
 /*   By: mberila <mberila@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/16 15:11:52 by mberila           #+#    #+#             */
-/*   Updated: 2025/01/21 15:11:54 by mberila          ###   ########.fr       */
+/*   Updated: 2025/01/23 16:25:53 by mberila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # include <stdio.h>      // For perror
 # include "./get_next_line.h"
 # include "../../lib/libft/libft.h"
+# include "../../lib/ft_printf/ft_printf.h"
 
 // Define game constants 
 # define TILE_SIZE 50
@@ -58,6 +59,8 @@ typedef struct s_pos
 {
 	int	x;
 	int	y;
+	int e_x;
+	int e_y;
 }	t_pos;
 
 typedef struct s_game
@@ -100,12 +103,13 @@ typedef struct s_game
 	int		coin_frame;
 	int		enemy_frame;
 	int		frame_counter;
-    int		enemy_direction;
-	int	enemy_x;    // New: enemy's x position
-    int	enemy_y;    // New: enemy's y position
+    int     enemy_x;
+    int     enemy_y;
+    int     enemy_count;
+    int     enemy_counter;
+    int     enemy_direction; 
 }	t_game;
 
-// Flood fill structure to track visited positions
 
 typedef struct s_fill
 {
@@ -129,4 +133,5 @@ void	character_valid(t_game *game);
 void	draw_steps(t_game *game);
 void	put_collectible(t_game *game, int y, int x);
 void	animate(t_game *game);
+int    	update_game(t_game *game);
 #endif
