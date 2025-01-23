@@ -6,7 +6,7 @@
 /*   By: mberila <mberila@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 15:46:30 by mberila           #+#    #+#             */
-/*   Updated: 2025/01/23 16:50:13 by mberila          ###   ########.fr       */
+/*   Updated: 2025/01/23 17:08:27 by mberila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ static t_game	*init_game(int ac, char *av[])
 	p_pos = get_char_pos(game, 'P');
 	if (!p_pos)
 	{
-		free(game);
+		cleanup(game);
 		return (NULL);
 	}
 	game->player_x = p_pos->x;

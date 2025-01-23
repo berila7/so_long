@@ -6,7 +6,7 @@
 /*   By: mberila <mberila@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/16 11:34:24 by mberila           #+#    #+#             */
-/*   Updated: 2025/01/23 16:49:55 by mberila          ###   ########.fr       */
+/*   Updated: 2025/01/23 17:11:52 by mberila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ void	cleanup_mlx(t_game *game)
 		mlx_destroy_image(game->mlx, game->collectible);
 	if (game->exit)
 		mlx_destroy_image(game->mlx, game->exit);
-	free(game->mlx);
 	game->mlx = NULL;
 }
 

@@ -6,21 +6,11 @@
 /*   By: mberila <mberila@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/05 14:06:39 by mberila           #+#    #+#             */
-/*   Updated: 2025/01/23 16:46:13 by mberila          ###   ########.fr       */
+/*   Updated: 2025/01/23 18:38:05 by mberila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../so_long_bonus.h"
-
-static int	width_of_map(char *string)
-{
-	int	width;
-
-	width = 0;
-	while (string[width] != '\0')
-		width++;
-	return (width);
-}
 
 static int	add_line(t_game *game, char *line)
 {
@@ -65,7 +55,7 @@ static int	process_map_lines(t_game *game, char *readmap)
 		readmap = get_next_line(game->fd);
 	}
 	close(game->fd);
-	game->map_w = width_of_map(game->map[0]);
+	game->map_w = ft_strlen(game->map[0]);
 	return (1);
 }
 
@@ -112,5 +102,6 @@ t_pos	*get_char_pos(t_game *game, char c)
 		}
 		i++;
 	}
-	return (pos);
+	free(pos);
+	return (NULL);
 }

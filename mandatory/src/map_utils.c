@@ -6,7 +6,7 @@
 /*   By: mberila <mberila@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/05 14:06:39 by mberila           #+#    #+#             */
-/*   Updated: 2025/01/23 16:50:17 by mberila          ###   ########.fr       */
+/*   Updated: 2025/01/23 17:13:46 by mberila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,5 +112,6 @@ t_pos	*get_char_pos(t_game *game, char c)
 		}
 		i++;
 	}
-	return (pos);
+	free(pos);
+	return (NULL);
 }

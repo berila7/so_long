@@ -6,7 +6,7 @@
 /*   By: mberila <mberila@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/16 15:11:52 by mberila           #+#    #+#             */
-/*   Updated: 2025/01/23 16:48:52 by mberila          ###   ########.fr       */
+/*   Updated: 2025/01/23 17:50:42 by mberila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,4 +134,5 @@ void	draw_steps(t_game *game);
 void	put_collectible(t_game *game, int y, int x);
 void	animate(t_game *game);
 int    	update_game(t_game *game);
+void	handle_errors(t_game *g, const char *msg);
 #endif

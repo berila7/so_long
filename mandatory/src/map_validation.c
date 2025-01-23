@@ -6,7 +6,7 @@
 /*   By: mberila <mberila@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 16:36:06 by mberila           #+#    #+#             */
-/*   Updated: 2025/01/23 16:50:21 by mberila          ###   ########.fr       */
+/*   Updated: 2025/01/23 18:25:13 by mberila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	is_rectangular(t_game *game)
 	while (i < game->map_h)
 	{
 		len = ft_strlen(game->map[i]);
-		if (len != game->map_w)
+		if (len != (int)ft_strlen(game->map[0]))
 			return (-1);
 		i++;
 	}

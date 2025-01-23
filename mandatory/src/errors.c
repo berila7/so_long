@@ -6,7 +6,7 @@
 /*   By: mberila <mberila@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/12 15:04:45 by mberila           #+#    #+#             */
-/*   Updated: 2025/01/23 16:50:04 by mberila          ###   ########.fr       */
+/*   Updated: 2025/01/23 18:08:23 by mberila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	check_errors(t_game *game)
 {
-	if (!is_rectangular (game))
+	if (!is_rectangular(game))
 	{
 		ft_printf(RED "\nError: Map is not rectangular\n" RESET);
 		exit_point (game);
