@@ -6,11 +6,11 @@
 /*   By: mberila <mberila@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/16 11:34:24 by mberila           #+#    #+#             */
-/*   Updated: 2025/01/20 19:57:03 by mberila          ###   ########.fr       */
+/*   Updated: 2025/01/23 16:45:50 by mberila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/so_long_bonus.h"
+#include "../so_long_bonus.h"
 
 void	cleanup_mlx(t_game *game)
 {

@@ -6,11 +6,11 @@
 /*   By: mberila <mberila@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 21:19:32 by mberila           #+#    #+#             */
-/*   Updated: 2025/01/23 16:22:20 by mberila          ###   ########.fr       */
+/*   Updated: 2025/01/23 16:45:38 by mberila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/so_long_bonus.h"
+#include "../so_long_bonus.h"
 
 void	draw_steps(t_game *g)
 {

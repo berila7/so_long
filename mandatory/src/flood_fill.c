@@ -6,11 +6,11 @@
 /*   By: mberila <mberila@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 16:33:53 by mberila           #+#    #+#             */
-/*   Updated: 2025/01/20 16:34:56 by mberila          ###   ########.fr       */
+/*   Updated: 2025/01/23 16:50:08 by mberila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/so_long.h"
+#include "../so_long.h"
 
 static char	**allocate_visited_array(t_game *game)
 {

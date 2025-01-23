@@ -6,11 +6,11 @@
 /*   By: mberila <mberila@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/12 15:04:45 by mberila           #+#    #+#             */
-/*   Updated: 2025/01/23 16:28:48 by mberila          ###   ########.fr       */
+/*   Updated: 2025/01/23 16:50:04 by mberila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/so_long.h"
+#include "../so_long.h"
 
 int	check_errors(t_game *game)
 {

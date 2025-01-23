@@ -6,7 +6,7 @@
 #    By: mberila <mberila@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/08 11:55:01 by mberila           #+#    #+#              #
-#    Updated: 2025/01/23 16:20:24 by mberila          ###   ########.fr        #
+#    Updated: 2025/01/23 16:39:36 by mberila          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -66,3 +66,4 @@ fclean: clean
 
 re: fclean all
 
+.PHONY : $(LIBFT_DIR) $(FPF_DIR)
