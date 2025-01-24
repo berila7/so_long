@@ -6,11 +6,11 @@
 /*   By: mberila <mberila@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 11:02:42 by mberila           #+#    #+#             */
-/*   Updated: 2025/01/23 16:52:08 by mberila          ###   ########.fr       */
+/*   Updated: 2025/01/24 16:04:18 by mberila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../bonus/so_long_bonus.h"
+#include "../../mandatory/so_long.h"
 
 static char	*configure_line(char *line)
 {

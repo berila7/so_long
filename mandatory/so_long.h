@@ -6,7 +6,7 @@
 /*   By: mberila <mberila@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/16 15:11:52 by mberila           #+#    #+#             */
-/*   Updated: 2025/01/24 13:16:46 by mberila          ###   ########.fr       */
+/*   Updated: 2025/01/24 16:02:58 by mberila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,11 +42,17 @@
 
 /* Error messages */
 # define ERR_MAP_EX "Error\nMap file must be .ber\n"
+# define ERR_MAP_ARG "Error\nUsage: ./so_long <map.ber>\n"
 # define ERR_MAP_OPEN "Error\nCannot open map file\n"
 # define ERR_MAP_EMPTY "Error\nMap is empty\n"
 # define ERR_MAP_IN "Error\nMap is invalid\n"
 # define MALLOC_FAIL "Error\nMemory allocation failed\n"
 # define ERR_RECT "Error\nMap is not rectangular\n"
+# define ERR_WALLS "Error\nMap must be surrounded by walls\n"
+# define ERR_PLAYER "Error\nMap must have exactly one player\n"
+# define ERR_EXIT "Error\nMap must have exactly one exit\n"
+# define ERR_COLLECT "Error\nMap must have at least one collectible\n"
+# define ERR_CHARS "Error\nMap contains invalid characters\n"
 
 /* Colors*/
 # define RESET   "\033[0m"
@@ -63,7 +69,7 @@ typedef struct s_game
 	void	*win;
 	char    **map;
     int     height;
-    int     width;
+    int		width;
     int     collect;
     int     exit;
     int     player; 
@@ -74,6 +80,6 @@ t_game	*init_game(void);
 int		read_map(t_game *game, char *file);
 void	free_game(t_game *game);
 void	print_error(char *message);
-
+int     validate_map(t_game *game);
 
 #endif

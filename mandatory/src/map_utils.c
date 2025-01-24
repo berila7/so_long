@@ -6,7 +6,7 @@
 /*   By: mberila <mberila@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/05 14:06:39 by mberila           #+#    #+#             */
-/*   Updated: 2025/01/24 13:04:26 by mberila          ###   ########.fr       */
+/*   Updated: 2025/01/24 16:02:48 by mberila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,13 +45,14 @@ static int	count_lines(char *filename)
 	int		fd;
 	int		lines;
 
-	lines = 0;
 	fd = open(filename, O_RDONLY);
 	if (fd < 0)
 	{
 		print_error(ERR_MAP_OPEN);
 		return (-1);
 	}
+	lines = 0;
+	line = NULL;
 	while (line)
 	{
 		free(line);
@@ -82,7 +83,7 @@ static int	init_map(t_game *game, char *filename)
 
 static int	check_line_length(t_game *game, char *line, int line_num)
 {
-	size_t	len;
+	int	len;
 
 	len = ft_strlen(line);
 	if(line_num == 0)
@@ -93,7 +94,7 @@ static int	check_line_length(t_game *game, char *line, int line_num)
 	if(len != game->width)
 	{
 		print_error(ERR_RECT);
-		retrun (0);
+		return (0);
 	}
 	return (1);
 }
