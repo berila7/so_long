@@ -6,7 +6,7 @@
 /*   By: mberila <mberila@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 15:46:30 by mberila           #+#    #+#             */
-/*   Updated: 2025/01/23 16:50:13 by mberila          ###   ########.fr       */
+/*   Updated: 2025/01/24 09:46:12 by mberila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ static t_game	*init_game(int ac, char *av[])
 	game = malloc(sizeof(t_game));
 	if (!game)
 		return (NULL);
-	ft_bzero(game, sizeof(t_game));
+	ft_memset(game, 0, sizeof(t_game));
 	map_reading(game, av);
 	check_errors(game);
 	p_pos = get_char_pos(game, 'P');

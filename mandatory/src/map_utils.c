@@ -6,7 +6,7 @@
 /*   By: mberila <mberila@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/05 14:06:39 by mberila           #+#    #+#             */
-/*   Updated: 2025/01/23 16:50:17 by mberila          ###   ########.fr       */
+/*   Updated: 2025/01/24 09:50:14 by mberila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,46 +47,51 @@ static int	add_line(t_game *game, char *line)
 	return (1);
 }
 
-static int	process_map_lines(t_game *game, char *readmap)
-{
-	char	*trimmed_line;
 
-	while (readmap)
-	{
-		trimmed_line = ft_strtrim(readmap, "\n");
-		free(readmap);
-		readmap = trimmed_line;
-		ft_printf("Reading line: %s\n", readmap);
-		if (!add_line(game, readmap))
-		{
-			free(readmap);
-			break ;
-		}
-		readmap = get_next_line(game->fd);
-	}
-	close(game->fd);
-	game->map_w = width_of_map(game->map[0]);
-	return (1);
+static int process_map_lines(t_game *game, char *readmap)
+{
+    while (readmap)
+    {
+        if (readmap[ft_strlen(readmap) - 1] == '\n')
+            readmap[ft_strlen(readmap) - 1] = '\0';
+            
+        printf("Reading line: %s\n", readmap);
+
+        if (!add_line(game, readmap))
+        {
+            free(readmap);
+            break;
+        }
+        
+        readmap = get_next_line(game->fd);
+    }
+    
+    close(game->fd);
+    game->map_w = width_of_map(game->map[0]);
+    return (1);
 }
 
-int	map_reading(t_game *game, char *av[])
+// The main function that coordinates map reading - keeps original name and interface
+int map_reading(t_game *game, char *av[])
 {
-	char	*readmap;
+    char    *readmap;
 
-	game->fd = open(av[1], O_RDONLY);
-	if (game->fd < 0)
-	{
-		ft_printf(RED "\nError: Could not open file\n" RESET);
-		return (0);
-	}
-	readmap = get_next_line(game->fd);
-	if (!readmap)
-	{
-		ft_printf(RED"Error: your map is EMPTY"RESET);
-		exit_point(game);
-	}
-	game->map_h = 0;
-	return (process_map_lines(game, readmap));
+    // Open and validate file
+    game->fd = open(av[1], O_RDONLY);
+    if (game->fd < 0)
+    {
+        printf(RED "\nError: Could not open file\n" RESET);
+        return (0);
+    }
+    
+    readmap = get_next_line(game->fd);
+    if (!readmap)
+    {
+        printf(RED"Error: your map is EMPTY"RESET);
+        exit_point(game);
+    }
+    game->map_h = 0;
+    return (process_map_lines(game, readmap));
 }
 
 t_pos	*get_char_pos(t_game *game, char c)
