@@ -6,13 +6,13 @@
 /*   By: mberila <mberila@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/05 14:06:39 by mberila           #+#    #+#             */
-/*   Updated: 2025/01/24 16:02:48 by mberila          ###   ########.fr       */
+/*   Updated: 2025/01/24 20:19:49 by mberila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../so_long.h"
 
-static void	free_map(char **map, int height)
+void	free_map(char **map, int height)
 {
 	int	i;
 
@@ -35,9 +35,9 @@ static int 	check_extension(char *filename)
 	if (!dot || ft_strncmp(dot, ".ber", 4) != 0)
 	{
 		print_error(ERR_MAP_EX);
-		return (1);
+		return (0);
 	}
-	return (0);
+	return (1);
 }
 static int	count_lines(char *filename)
 {
@@ -52,11 +52,11 @@ static int	count_lines(char *filename)
 		return (-1);
 	}
 	lines = 0;
-	line = NULL;
+	line = get_next_line(fd);
 	while (line)
 	{
-		free(line);
 		lines++;	
+		free(line);
 		line = get_next_line(fd);
 	}
 	if (lines == 0)
@@ -85,7 +85,7 @@ static int	check_line_length(t_game *game, char *line, int line_num)
 {
 	int	len;
 
-	len = ft_strlen(line);
+	len = ft_strchr(line, '\n') ? ft_strlen(line) - 1 : ft_strlen(line);
 	if(line_num == 0)
 	{
 		game->width = len;
@@ -125,7 +125,6 @@ static int	read_lines(t_game *game, int fd)
 int	read_map(t_game *game, char *filename)
 {
 	int	fd;
-	int	result;
 
 	if (!init_map(game, filename))
 		return (0);
@@ -135,7 +134,11 @@ int	read_map(t_game *game, char *filename)
 		free(game->map);
 		return (0);
 	}
-	result = read_lines(game, fd);
+	if (!read_lines(game, fd))
+    {
+        close(fd);
+        return (0);
+    }
 	close(fd);
-	return (result);
+	return (1);
 }

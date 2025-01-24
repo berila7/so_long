@@ -6,7 +6,7 @@
 /*   By: mberila <mberila@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 15:57:57 by mberila           #+#    #+#             */
-/*   Updated: 2025/01/24 16:07:46 by mberila          ###   ########.fr       */
+/*   Updated: 2025/01/24 18:19:05 by mberila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,17 +50,11 @@ int	main(int ac, char **av)
         free_game(game);
         return (1);
     }
-    // Test validation
     if (!validate_map(game))
     {
         free_game(game);
         return (1);
     }
-    // Print success message for testing
-    ft_printf("Map validation successful!\n");
-    ft_printf("Player count: %d\n", game->player);
-    ft_printf("Exit count: %d\n", game->exit);
-    ft_printf("Collectibles: %d\n", game->collect);
     free_game(game);
     return (0);
 }

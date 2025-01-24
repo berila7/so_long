@@ -6,7 +6,7 @@
 /*   By: mberila <mberila@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 16:36:06 by mberila           #+#    #+#             */
-/*   Updated: 2025/01/24 16:17:04 by mberila          ###   ########.fr       */
+/*   Updated: 2025/01/24 20:48:47 by mberila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,10 @@ static int	check_map_chars(t_game *game)
 		while(j < game->width)
 		{
 			if(!is_valid_char(game->map[i][j]))
+			{
+				print_error(ERR_CHARS);
 				return(0);
+			}
 			count_elements(game, game->map[i][j]);
 			j++;
 		}
@@ -94,8 +97,13 @@ static int	check_map_chars(t_game *game)
 int	validate_map(t_game *game)
 {
 	if(!check_walls(game))
+	{
+		print_error(ERR_WALLS);
 		return (0);
-	if(!check_map_chars(game))
-		return (0);	
-	return (1);
+	}
+	if (!check_map_chars(game))
+        return (0);
+	if (!check_path(game))
+		return (0);
+    return (1);
 }
