@@ -6,116 +6,135 @@
 /*   By: mberila <mberila@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/05 14:06:39 by mberila           #+#    #+#             */
-/*   Updated: 2025/01/24 09:50:14 by mberila          ###   ########.fr       */
+/*   Updated: 2025/01/24 13:04:26 by mberila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../so_long.h"
 
-static int	width_of_map(char *string)
+static void	free_map(char **map, int height)
 {
-	int	width;
+	int	i;
 
-	width = 0;
-	while (string[width] != '\0')
-		width++;
-	return (width);
-}
-
-static int	add_line(t_game *game, char *line)
-{
-	char	**temporary_map;
-	int		i;
-
-	if (!line)
-		return (0);
-	game->map_h++;
-	temporary_map = (char **)malloc(sizeof(char *) * (game->map_h + 1));
-	if (!temporary_map)
-		return (0);
-	temporary_map[game->map_h] = NULL;
 	i = 0;
-	while (i < game->map_h - 1)
+	while (i < height)
 	{
-		temporary_map[i] = game->map[i];
+		free(map[i]);
 		i++;
 	}
-	temporary_map[i] = line;
-	if (game->map)
-		free(game->map);
-	game->map = temporary_map;
+	free(map);
+}
+
+static int 	check_extension(char *filename)
+{
+	char	*dot;
+
+	if (!filename)
+		return (0);
+	dot = ft_strrchr(filename, '.');
+	if (!dot || ft_strncmp(dot, ".ber", 4) != 0)
+	{
+		print_error(ERR_MAP_EX);
+		return (1);
+	}
+	return (0);
+}
+static int	count_lines(char *filename)
+{
+	char	*line;
+	int		fd;
+	int		lines;
+
+	lines = 0;
+	fd = open(filename, O_RDONLY);
+	if (fd < 0)
+	{
+		print_error(ERR_MAP_OPEN);
+		return (-1);
+	}
+	while (line)
+	{
+		free(line);
+		lines++;	
+		line = get_next_line(fd);
+	}
+	if (lines == 0)
+	{
+		print_error(ERR_MAP_EMPTY);
+		return (-1);
+	}
+	close(fd);
+	return (lines);
+}
+
+static int	init_map(t_game *game, char *filename)
+{
+	if (!check_extension(filename))
+		return (0);
+	game->height = count_lines(filename);
+	if (game->height <= 0)
+		return (0);
+	game->map = (char **)malloc(sizeof(char *) * (game->height + 1));
+	if (!game->map)
+		return (0);
 	return (1);
 }
 
-
-static int process_map_lines(t_game *game, char *readmap)
+static int	check_line_length(t_game *game, char *line, int line_num)
 {
-    while (readmap)
-    {
-        if (readmap[ft_strlen(readmap) - 1] == '\n')
-            readmap[ft_strlen(readmap) - 1] = '\0';
-            
-        printf("Reading line: %s\n", readmap);
+	size_t	len;
 
-        if (!add_line(game, readmap))
-        {
-            free(readmap);
-            break;
-        }
-        
-        readmap = get_next_line(game->fd);
-    }
-    
-    close(game->fd);
-    game->map_w = width_of_map(game->map[0]);
-    return (1);
-}
-
-// The main function that coordinates map reading - keeps original name and interface
-int map_reading(t_game *game, char *av[])
-{
-    char    *readmap;
-
-    // Open and validate file
-    game->fd = open(av[1], O_RDONLY);
-    if (game->fd < 0)
-    {
-        printf(RED "\nError: Could not open file\n" RESET);
-        return (0);
-    }
-    
-    readmap = get_next_line(game->fd);
-    if (!readmap)
-    {
-        printf(RED"Error: your map is EMPTY"RESET);
-        exit_point(game);
-    }
-    game->map_h = 0;
-    return (process_map_lines(game, readmap));
-}
-
-t_pos	*get_char_pos(t_game *game, char c)
-{
-	int		i;
-	int		j;
-	t_pos	*pos;
-
-	pos = malloc(sizeof(t_pos));
-	if (!pos)
-		return (NULL);
-	pos->x = -1;
-	pos->y = -1;
-	i = 0;
-	while (i < game->map_h)
+	len = ft_strlen(line);
+	if(line_num == 0)
 	{
-		j = 0;
-		while (j < game->map_w)
+		game->width = len;
+		return (1);
+	}
+	if(len != game->width)
+	{
+		print_error(ERR_RECT);
+		retrun (0);
+	}
+	return (1);
+}
+
+static int	read_lines(t_game *game, int fd)
+{
+	int	i;
+
+	i = 0;
+	while (i < game->height)
+	{
+		game->map[i] = get_next_line(fd);
+		if (!game->map[i])
 		{
-			if (game->map[i][j] == c)
-				return (pos->y = i, pos->x = j, pos);
-			j++;
+			free_map(game->map, i);
+			return (0);
+		}
+		if(!check_line_length(game, game->map[i], i))
+		{
+			free_map(game->map, i + 1);
+			return (0);
 		}
 		i++;
 	}
-	return (pos);
+	game->map[i] = NULL;
+	return (1);
+}
+int	read_map(t_game *game, char *filename)
+{
+	int	fd;
+	int	result;
+
+	if (!init_map(game, filename))
+		return (0);
+	fd = open(filename, O_RDONLY);
+	if (fd < 0)
+	{
+		free(game->map);
+		return (0);
+	}
+	result = read_lines(game, fd);
+	close(fd);
+	return (result);
 }

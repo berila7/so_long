@@ -6,7 +6,7 @@
 /*   By: mberila <mberila@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/16 15:11:52 by mberila           #+#    #+#             */
-/*   Updated: 2025/01/24 09:44:21 by mberila          ###   ########.fr       */
+/*   Updated: 2025/01/24 13:16:46 by mberila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,9 +41,12 @@
 # define ESCKEY 53
 
 /* Error messages */
-# define ERR_ARGS "Error\nInvalid number of arguments"
-# define ERR_FILE "Error\nCould not open file"
-# define ERR_MAP "Error\nInvalid map"
+# define ERR_MAP_EX "Error\nMap file must be .ber\n"
+# define ERR_MAP_OPEN "Error\nCannot open map file\n"
+# define ERR_MAP_EMPTY "Error\nMap is empty\n"
+# define ERR_MAP_IN "Error\nMap is invalid\n"
+# define MALLOC_FAIL "Error\nMemory allocation failed\n"
+# define ERR_RECT "Error\nMap is not rectangular\n"
 
 /* Colors*/
 # define RESET   "\033[0m"
@@ -54,58 +57,23 @@
 # define MAGENTA "\033[35m"
 # define CYAN    "\033[36m"
 
-typedef struct s_pos
-{
-	int	x;
-	int	y;
-}	t_pos;
-
-
 typedef struct s_game
 {
 	void	*mlx;
-	void	*mlx_win;
-	void	*player;
-	void	*floor;
-	void	*wall;
-	void	*collectible;
-	void	*exit;
-
-	char	**map;
-
-	int		map_h;
-	int		map_w;
-	int		win_h;
-	int		win_w;
-	int		collectibles;
-	int		player_x;
-	int		player_y;
-	int		fd;
-	int		counter;
-	int		player_count;
-	int		exit_count;
+	void	*win;
+	char    **map;
+    int     height;
+    int     width;
+    int     collect;
+    int     exit;
+    int     player; 
+	int		moves;
 }	t_game;
 
-// Flood fill structure to track visited positions
+t_game	*init_game(void);
+int		read_map(t_game *game, char *file);
+void	free_game(t_game *game);
+void	print_error(char *message);
 
-typedef struct s_fill
-{
-	char	**visited;
-	int		collectibles_reached;
-	int		exit_reached;
-}	t_fill;
-
-int		map_reading(t_game *game, char *av[]);
-void	put_to_window(t_game *game);
-void	put_images(t_game *game);
-int		exit_point(t_game *game);
-int		controls_working(int command, t_game *game);
-t_pos	*get_char_pos(t_game *game, char c);
-int		check_errors(t_game *game);
-void	cleanup(t_game *game);
-int		validate_path(t_game *game);
-int		is_rectangular(t_game *game);
-void	if_walls(t_game *game);
-void	character_valid(t_game *game);
 
 #endif
