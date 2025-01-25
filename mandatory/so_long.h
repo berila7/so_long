@@ -6,7 +6,7 @@
 /*   By: mberila <mberila@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/16 15:11:52 by mberila           #+#    #+#             */
-/*   Updated: 2025/01/25 12:28:03 by mberila          ###   ########.fr       */
+/*   Updated: 2025/01/25 12:43:51 by mberila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,8 @@
 # define KEYLEFT 0
 # define KEYRIGHT 2
 # define ESCKEY 53
+# define ON_DESTROY 17
+# define NO_EVENT_MASK 0
 
 /* Error messages */
 # define ERR_MAP_EX "Error\nMap file must be .ber\n"

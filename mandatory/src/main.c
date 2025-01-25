@@ -6,7 +6,7 @@
 /*   By: mberila <mberila@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 15:57:57 by mberila           #+#    #+#             */
-/*   Updated: 2025/01/25 12:22:06 by mberila          ###   ########.fr       */
+/*   Updated: 2025/01/25 12:44:20 by mberila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,28 @@ void f()
 {
     system("leaks so_long");  // Check for memory leaks
     system("lsof | grep '^so_long'"); // Check for open file descriptors
+}
+
+int	key_hook(int keycode, t_game *game)
+{
+	if (keycode == ESCKEY)
+	{
+		free_game(game);
+		exit(0);
+	}
+	if (keycode == KEYUP || keycode == KEYDOWN
+		|| keycode == KEYLEFT || keycode == KEYRIGHT)
+	{
+		
+	}
+	return (0);
+}
+
+int	close_window(t_game *game)
+{
+	free_game(game);
+	exit(0);
+	return (0);
 }
 
 static int	setup_game(t_game *game, char *map_path)
@@ -32,6 +54,8 @@ static int	setup_game(t_game *game, char *map_path)
 		return (0);
 	if (!render_map(game))
 		return (0);
+	mlx_key_hook(game->win, key_hook, game);
+	mlx_hook(game->win, ON_DESTROY, NO_EVENT_MASK, close_window, game);
 	return (1);
 }
 
