@@ -6,11 +6,24 @@
 /*   By: mberila <mberila@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 10:37:02 by mberila           #+#    #+#             */
-/*   Updated: 2025/01/25 12:29:29 by mberila          ###   ########.fr       */
+/*   Updated: 2025/01/25 14:05:30 by mberila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../so_long.h"
+
+void	free_map(char **map, int height)
+{
+	int	i;
+
+	i = 0;
+	while (i < height)
+	{
+		free(map[i]);
+		i++;
+	}
+	free(map);
+}
 
 static	void	free_textures(t_game *game)
 {

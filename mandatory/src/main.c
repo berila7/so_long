@@ -6,7 +6,7 @@
 /*   By: mberila <mberila@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 15:57:57 by mberila           #+#    #+#             */
-/*   Updated: 2025/01/25 13:03:33 by mberila          ###   ########.fr       */
+/*   Updated: 2025/01/25 13:49:57 by mberila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,12 +60,6 @@ static int	setup_game(t_game *game, char *map_path)
 	return (1);
 }
 
-int	loop_hook(t_game *game)
-{
-    render_map(game);
-    return (0);
-}
-
 int	main(int ac, char **av)
 {
     t_game	*game;
@@ -83,7 +77,6 @@ int	main(int ac, char **av)
 		free_game(game);
 		return (1);
 	}
-	mlx_loop_hook(game->mlx, loop_hook, game);
 	mlx_loop(game->mlx);
     free_game(game);
     return (0);

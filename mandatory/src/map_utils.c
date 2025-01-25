@@ -6,24 +6,13 @@
 /*   By: mberila <mberila@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/05 14:06:39 by mberila           #+#    #+#             */
-/*   Updated: 2025/01/24 20:19:49 by mberila          ###   ########.fr       */
+/*   Updated: 2025/01/25 14:10:35 by mberila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../so_long.h"
 
-void	free_map(char **map, int height)
-{
-	int	i;
 
-	i = 0;
-	while (i < height)
-	{
-		free(map[i]);
-		i++;
-	}
-	free(map);
-}
 
 static int 	check_extension(char *filename)
 {
@@ -62,6 +51,7 @@ static int	count_lines(char *filename)
 	if (lines == 0)
 	{
 		print_error(ERR_MAP_EMPTY);
+		close(fd);
 		return (-1);
 	}
 	close(fd);
