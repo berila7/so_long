@@ -6,17 +6,17 @@
 /*   By: mberila <mberila@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 15:57:57 by mberila           #+#    #+#             */
-/*   Updated: 2025/01/25 19:38:01 by mberila          ###   ########.fr       */
+/*   Updated: 2025/01/25 20:38:31 by mberila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../so_long_bonus.h"
 
-void f()
-{
-    system("leaks so_long");  // Check for memory leaks
-    system("lsof | grep '^so_long'"); // Check for open file descriptors
-}
+// void f()
+// {
+//     system("leaks so_long");  // Check for memory leaks
+//     system("lsof | grep '^so_long'"); // Check for open file descriptors
+// }
 
 int	key_hook(int keycode, t_game *game)
 {
@@ -71,7 +71,7 @@ static int	setup_game(t_game *game, char *map_path)
 int	main(int ac, char **av)
 {
     t_game	*game;
-	atexit(f);
+	// atexit(f);
     if (ac != 2)
     {
         print_error(ERR_MAP_ARG);
