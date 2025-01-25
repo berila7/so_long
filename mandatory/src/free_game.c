@@ -1,43 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_game.c                                        :+:      :+:    :+:   */
+/*   free_game.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mberila <mberila@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/24 10:27:20 by mberila           #+#    #+#             */
-/*   Updated: 2025/01/25 10:35:46 by mberila          ###   ########.fr       */
+/*   Created: 2025/01/25 10:37:02 by mberila           #+#    #+#             */
+/*   Updated: 2025/01/25 10:37:11 by mberila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../so_long.h"
 
-static int	init_mlx(t_game *game)
+void    free_game(t_game *game)
 {
-	game->mlx = mlx_init();
-	if (!game->mlx)
-	{
-		print_error(ERR_MLX);
-		return (0);
-	}
-	return (1);
-}
+    int i;
 
-t_game	*init_game(void)
-{
-	t_game	*game;
+    if (!game)
+        return;
 
-	game = (t_game *)malloc(sizeof(t_game));
-	if (!game)
-	{
-		print_error(MALLOC_FAIL);
-		return (NULL);
-	}
-	ft_memset(game, 0, sizeof(t_game));
-	if (!init_mlx(game))
-	{
-		free(game);
-		return (NULL);
-	}
-	return (game);
+    if (game->map)
+    {
+        i = 0;
+        while (i < game->height)
+        {
+            if (game->map[i])
+                free(game->map[i]);
+            i++;
+        }
+        free(game->map);
+    }
+    free(game);
 }

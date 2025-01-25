@@ -6,7 +6,7 @@
 /*   By: mberila <mberila@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/16 15:11:52 by mberila           #+#    #+#             */
-/*   Updated: 2025/01/24 20:47:54 by mberila          ###   ########.fr       */
+/*   Updated: 2025/01/25 10:33:21 by mberila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@
 # define ERR_COLLECT "Error\nMap must have at least one collectible\n"
 # define ERR_CHARS "Error\nMap contains invalid characters\n"
 # define ERR_PATH "Error\nNo valid path\n"
+# define ERR_MLX "Error\nMLX initialization failed"
 
 /* Colors*/
 # define RESET   "\033[0m"

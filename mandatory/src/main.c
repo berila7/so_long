@@ -6,37 +6,22 @@
 /*   By: mberila <mberila@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 15:57:57 by mberila           #+#    #+#             */
-/*   Updated: 2025/01/24 18:19:05 by mberila          ###   ########.fr       */
+/*   Updated: 2025/01/25 10:36:48 by mberila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../so_long.h"
 
-void    free_game(t_game *game)
+void f()
 {
-    int i;
-
-    if (!game)
-        return;
-
-    if (game->map)
-    {
-        i = 0;
-        while (i < game->height)
-        {
-            if (game->map[i])
-                free(game->map[i]);
-            i++;
-        }
-        free(game->map);
-    }
-    free(game);
+    system("leaks so_long");  // Check for memory leaks
+    system("lsof | grep '^so_long'"); // Check for open file descriptors
 }
 
 int	main(int ac, char **av)
 {
     t_game	*game;
-
+	atexit(f);
     if (ac != 2)
     {
         print_error(ERR_MAP_ARG);
