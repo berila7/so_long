@@ -6,7 +6,7 @@
 /*   By: mberila <mberila@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/16 15:11:52 by mberila           #+#    #+#             */
-/*   Updated: 2025/01/25 17:13:05 by mberila          ###   ########.fr       */
+/*   Updated: 2025/01/25 18:48:38 by mberila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,11 @@
 
 # define ANIMATION_FRAMES 5
 # define ANIMATION_SPEED 10
+
+# define P_RIGHT 0
+# define P_LEFT  1
+# define P_UP    2
+# define P_DOWN  3
 
 // Define keys
 # define KEYUP 13
@@ -85,6 +90,8 @@ typedef struct s_game
 	char    **map;
 
 	void	*collect_frames[ANIMATION_FRAMES];
+	void	*player_frames[4];
+	int		player_direction;
 	int		collect_current_frame;
 	int		collect_count;
 

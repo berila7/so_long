@@ -6,7 +6,7 @@
 /*   By: mberila <mberila@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 10:37:02 by mberila           #+#    #+#             */
-/*   Updated: 2025/01/25 18:25:06 by mberila          ###   ########.fr       */
+/*   Updated: 2025/01/25 19:08:31 by mberila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,8 @@ void	free_map(char **map, int height)
 	}
 	free(map);
 }
-
-static	void	free_textures(t_game *game)
+static void	free_basic_textures(t_game *game)
 {
-	int	i;
-
-	if (!game->mlx)
-		return ;
 	if (game->wall)
 		mlx_destroy_image(game->mlx, game->wall);
 	if (game->player_img)
@@ -41,7 +36,29 @@ static	void	free_textures(t_game *game)
 		mlx_destroy_image(game->mlx, game->exit_img);
 	if (game->floor)
 		mlx_destroy_image(game->mlx, game->floor);
+}
 
+static void	free_player_textures(t_game *game)
+{
+	int	i;
+
+	i = 0;
+	while (i < 4)
+	{
+		if (game->player_frames[i])
+			mlx_destroy_image(game->mlx, game->player_frames[i]);
+		i++;
+	}
+}
+
+static	void	free_textures(t_game *game)
+{
+	int	i;
+
+	if (!game->mlx)
+		return ;
+	free_basic_textures(game);
+	free_player_textures(game);
 	i = 0;
 	while (i < ANIMATION_FRAMES)
 	{

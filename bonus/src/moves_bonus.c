@@ -6,7 +6,7 @@
 /*   By: mberila <mberila@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 12:49:33 by mberila           #+#    #+#             */
-/*   Updated: 2025/01/25 16:05:51 by mberila          ###   ########.fr       */
+/*   Updated: 2025/01/25 18:58:59 by mberila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,33 @@ static void	update_player_position(t_game *game, int new_y, int new_x)
 	else
 		game->map[old_y][old_x] = EMPTY;
 	game->map[new_y][new_x] = PLAYER;
+}
+
+static void update_player_direction(t_game *game, int keycode)
+{
+	if (keycode == KEYUP)
+		game->player_direction = P_UP;
+	else if (keycode == KEYDOWN)
+		game->player_direction = P_DOWN;
+	else if (keycode == KEYLEFT)
+		game->player_direction = P_LEFT;
+	else if (keycode == KEYRIGHT)
+		game->player_direction = P_RIGHT;
+	game->player_img = game->player_frames[game->player_direction];
+}
+
+static void	get_new_position(int keycode , int *new_x, int *new_y, int x, int y)
+{
+	*new_x = x;
+	*new_y = y;
+	if (keycode == KEYUP)
+		*new_y = y - 1;
+	else if (keycode == KEYDOWN)
+		*new_y = y + 1;
+	else if (keycode == KEYLEFT)
+		*new_x = x - 1;
+	else if (keycode == KEYRIGHT)
+		*new_x = x + 1;
 }
 
 static int	is_valid_move(t_game *game, int y, int x)
@@ -55,16 +82,8 @@ void	move_player(t_game *game, int keycode)
 	int	new_x;
 
 	find_player_pos(game, &x, &y);
-	new_y = y;
-	new_x = x;
-	if (keycode == KEYUP)
-		new_y = y - 1;
-	else if (keycode == KEYDOWN)
-		new_y = y + 1;
-	else if (keycode == KEYLEFT)
-		new_x = x - 1;
-	else if (keycode == KEYRIGHT)
-		new_x = x + 1;
+	get_new_position(keycode, &new_x, &new_y, x, y);
+	update_player_direction(game, keycode);
 	if (is_valid_move(game, new_y, new_x))
 	{
 		update_player_position(game, new_y, new_x);
