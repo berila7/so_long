@@ -6,11 +6,27 @@
 /*   By: mberila <mberila@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 10:27:20 by mberila           #+#    #+#             */
-/*   Updated: 2025/01/25 10:35:46 by mberila          ###   ########.fr       */
+/*   Updated: 2025/01/25 11:01:48 by mberila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../so_long.h"
+
+static int	init_window(t_game *game)
+{
+	if(!game->width || !game->height)
+	{
+		print_error(ERR_DIMEN);
+		return (0);
+	}
+	game->win = mlx_new_window(game->mlx, game->width * TILE_SIZE, game->height * TILE_SIZE, "so_long");
+	if (!game->win)
+	{
+		print_error(ERR_MLX);
+		return (0);
+	}
+	return (1);
+}
 
 static int	init_mlx(t_game *game)
 {
@@ -39,5 +55,10 @@ t_game	*init_game(void)
 		free(game);
 		return (NULL);
 	}
+	if (!init_window(game))
+    {
+        free_game(game);
+        return (0);
+    }
 	return (game);
 }
