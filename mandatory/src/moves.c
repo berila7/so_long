@@ -6,7 +6,7 @@
 /*   By: mberila <mberila@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 12:49:33 by mberila           #+#    #+#             */
-/*   Updated: 2025/01/25 13:04:06 by mberila          ###   ########.fr       */
+/*   Updated: 2025/01/25 13:12:41 by mberila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,12 @@ static void	update_player_position(t_game *game, int new_y, int new_x)
 	int	old_y;
 	
 	find_player_pos(game, &old_x, &old_y);
-	game->map[old_y][old_x] = EMPTY;
+	if (game->map[old_y][old_x] == PLAYER
+		&& old_y == game->exit_pos_y
+		&& old_x == game->exit_pos_x)
+		game->map[old_y][old_x] = EXIT;
+	else
+		game->map[old_y][old_x] = EMPTY;
 	game->map[new_y][new_x] = PLAYER;
 }
 
@@ -27,7 +32,11 @@ static int	is_valid_move(t_game *game, int y, int x)
 	if (game->map[y][x] == WALL)
 		return (0);
 	if (game->map[y][x] == EXIT && game->collect != 0)
-		return (0);
+	{
+		game->exit_pos_x = x;
+        game->exit_pos_y = y;
+		return (1);
+	}
 	if (game->map[y][x] == COLLECT)
 		game->collect--;
 	if (game->map[y][x] == EXIT && game->collect == 0)
