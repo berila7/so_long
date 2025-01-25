@@ -6,7 +6,7 @@
 /*   By: mberila <mberila@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 15:57:57 by mberila           #+#    #+#             */
-/*   Updated: 2025/01/25 11:36:39 by mberila          ###   ########.fr       */
+/*   Updated: 2025/01/25 12:07:28 by mberila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,21 @@ void f()
 {
     system("leaks so_long");  // Check for memory leaks
     system("lsof | grep '^so_long'"); // Check for open file descriptors
+}
+
+static int	setup_game(t_game *game, char *map_path)
+{
+	if (!read_map(game, map_path))
+        return (0);
+    if (!validate_map(game))
+        return (0);
+	if (!init_mlx(game))
+		return (0);
+	if (!init_game_window(game))
+		return (0);
+	if (!init_textures(game))
+		return (0);
+	return (1);
 }
 
 int	main(int ac, char **av)
@@ -30,22 +45,7 @@ int	main(int ac, char **av)
     game = init_game();
     if (!game)
         return (1);
-    if (!read_map(game, av[1]))
-    {
-        free_game(game);
-        return (1);
-    }
-    if (!validate_map(game))
-    {
-        free_game(game);
-        return (1);
-    }
-	if (!init_mlx(game))
-	{
-		free_game(game);
-		return (1);
-	}
-	if (!init_game_window(game))
+	if (!setup_game(game, av[1]))
 	{
 		free_game(game);
 		return (1);

@@ -6,7 +6,7 @@
 /*   By: mberila <mberila@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/16 15:11:52 by mberila           #+#    #+#             */
-/*   Updated: 2025/01/25 11:33:03 by mberila          ###   ########.fr       */
+/*   Updated: 2025/01/25 12:00:43 by mberila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,14 @@ typedef struct s_game
 {
 	void	*mlx;
 	void	*win;
+	void	*wall;
+	void	*player_img;
+	void	*collect_img;
+	void	*exit_img;
+	void	*floor;
+
 	char    **map;
+
     int     height;
     int		width;
     int     collect;
@@ -88,5 +95,6 @@ void	free_map(char **map, int height);
 int		check_path(t_game *game);
 int		init_game_window(t_game *game);
 int		init_mlx(t_game *game);
+int		init_textures(t_game *game);
 
 #endif
