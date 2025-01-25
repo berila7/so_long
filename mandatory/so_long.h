@@ -6,7 +6,7 @@
 /*   By: mberila <mberila@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/16 15:11:52 by mberila           #+#    #+#             */
-/*   Updated: 2025/01/25 12:13:23 by mberila          ###   ########.fr       */
+/*   Updated: 2025/01/25 12:28:03 by mberila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@
 # define ERR_PATH "Error\nNo valid path\n"
 # define ERR_MLX "Error\nMLX initialization failed\n"
 # define ERR_DIMEN "Error\nMap dimensions not set\n"
+# define LOAD_FAIL "Error\nFailed to load texture: %s\n"
 
 /* Colors*/
 # define RESET   "\033[0m"

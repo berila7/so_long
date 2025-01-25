@@ -6,7 +6,7 @@
 /*   By: mberila <mberila@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 10:37:02 by mberila           #+#    #+#             */
-/*   Updated: 2025/01/25 12:09:29 by mberila          ###   ########.fr       */
+/*   Updated: 2025/01/25 12:29:29 by mberila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 static	void	free_textures(t_game *game)
 {
+	if (!game->mlx)
+		return ;
 	if (game->wall)
 		mlx_destroy_image(game->mlx, game->wall);
 	if (game->player_img)
