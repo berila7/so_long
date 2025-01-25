@@ -6,7 +6,7 @@
 /*   By: mberila <mberila@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 10:27:20 by mberila           #+#    #+#             */
-/*   Updated: 2025/01/25 11:07:31 by mberila          ###   ########.fr       */
+/*   Updated: 2025/01/25 11:30:49 by mberila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,21 @@ int	init_game_window(t_game *game)
 	return (1);
 }
 
-static int	init_mlx(t_game *game)
+t_game    *init_game(void)
+{
+    t_game    *game;
+
+    game = (t_game *)malloc(sizeof(t_game));
+    if (!game)
+    {
+        print_error(MALLOC_FAIL);
+        return (NULL);
+    }
+    ft_memset(game, 0, sizeof(t_game));
+    return (game);
+}
+
+int	init_mlx(t_game *game)
 {
 	game->mlx = mlx_init();
 	if (!game->mlx)
@@ -40,23 +54,4 @@ static int	init_mlx(t_game *game)
 		return (0);
 	}
 	return (1);
-}
-
-t_game	*init_game(void)
-{
-	t_game	*game;
-
-	game = (t_game *)malloc(sizeof(t_game));
-	if (!game)
-	{
-		print_error(MALLOC_FAIL);
-		return (NULL);
-	}
-	ft_memset(game, 0, sizeof(t_game));
-	if (!init_mlx(game))
-	{
-		free(game);
-		return (NULL);
-	}
-	return (game);
 }

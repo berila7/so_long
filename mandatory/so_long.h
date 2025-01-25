@@ -6,7 +6,7 @@
 /*   By: mberila <mberila@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/16 15:11:52 by mberila           #+#    #+#             */
-/*   Updated: 2025/01/25 11:08:23 by mberila          ###   ########.fr       */
+/*   Updated: 2025/01/25 11:33:03 by mberila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,5 +87,6 @@ int     validate_map(t_game *game);
 void	free_map(char **map, int height);
 int		check_path(t_game *game);
 int		init_game_window(t_game *game);
+int		init_mlx(t_game *game);
 
 #endif

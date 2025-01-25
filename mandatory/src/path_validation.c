@@ -6,25 +6,11 @@
 /*   By: mberila <mberila@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 20:12:52 by mberila           #+#    #+#             */
-/*   Updated: 2025/01/24 20:53:07 by mberila          ###   ########.fr       */
+/*   Updated: 2025/01/25 11:34:14 by mberila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../so_long.h"
-
-static void	print_map(char **map, t_game *game)
-{
-    int	i;
-
-    ft_printf("\nMap state:\n");
-    i = 0;
-    while (i < game->height)
-    {
-        ft_printf("%s\n", map[i]);
-        i++;
-    }
-    ft_printf("\n");
-}
 
 static char	**copy_map(t_game *game)
 {
@@ -102,13 +88,9 @@ int	check_path(t_game *game)
 	if (!temp_map)
 		return (0);
 	find_player_pos(game, &player_x, &player_y);
-	ft_printf("\nOriginal copied map:\n");
-	print_map(temp_map, game);
 	collect_count = game->collect;
 	exit_count = game->exit;
 	flood_fill(temp_map, player_x, player_y, game);
-	ft_printf("\nAfter flood fill:\n");
-	print_map(temp_map, game);
 	if(game->collect != 0 || game->exit != 0)
 	{
 		free_map(temp_map, game->height);
