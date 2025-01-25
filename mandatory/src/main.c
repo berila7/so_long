@@ -6,7 +6,7 @@
 /*   By: mberila <mberila@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 15:57:57 by mberila           #+#    #+#             */
-/*   Updated: 2025/01/25 11:32:34 by mberila          ###   ########.fr       */
+/*   Updated: 2025/01/25 11:36:39 by mberila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,11 @@ int	main(int ac, char **av)
         free_game(game);
         return (1);
     }
+	if (!init_mlx(game))
+	{
+		free_game(game);
+		return (1);
+	}
 	if (!init_game_window(game))
 	{
 		free_game(game);
