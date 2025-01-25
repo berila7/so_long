@@ -6,7 +6,7 @@
 /*   By: mberila <mberila@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 16:24:09 by mberila           #+#    #+#             */
-/*   Updated: 2025/01/25 17:01:34 by mberila          ###   ########.fr       */
+/*   Updated: 2025/01/25 17:09:46 by mberila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,12 @@ void	init_animations(t_game *game)
 	while (i < ANIMATION_FRAMES)
 	{
 		game->collect_frames[i] = load_texture(game, collect_paths[i]);
+		if(!game->collect_frames[i])
+		{
+			ft_printf("Error\nFailed to load collectible texture %d\n", i + 1);
+			free_game(game);
+			exit(1);
+		}
 		i++;
 	}
 	game->collect_current_frame = 0;
@@ -38,7 +44,7 @@ void	update_animations(t_game *game)
 	game->animation_timer++;
 	if (game->animation_timer >= ANIMATION_SPEED)
 	{
-		game->collect_current_frame = (game->collect_current_frame + 1) % ANIMATION_SPEED;
+		game->collect_current_frame = (game->collect_current_frame + 1) % ANIMATION_FRAMES;
 		game->animation_timer = 0;
 	}
 }
