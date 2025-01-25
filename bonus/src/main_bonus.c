@@ -6,7 +6,7 @@
 /*   By: mberila <mberila@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 15:57:57 by mberila           #+#    #+#             */
-/*   Updated: 2025/01/25 18:25:18 by mberila          ###   ########.fr       */
+/*   Updated: 2025/01/25 19:15:59 by mberila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,7 @@ void f()
 int	key_hook(int keycode, t_game *game)
 {
 	if (keycode == ESCKEY)
-	{
-		free_game(game);
-		exit(0);
-	}
+		close_window(game);
 	if (keycode == KEYUP || keycode == KEYDOWN
 		|| keycode == KEYLEFT || keycode == KEYRIGHT)
 	{
@@ -36,7 +33,8 @@ int	key_hook(int keycode, t_game *game)
 
 int	close_window(t_game *game)
 {
-	free_game(game);
+	if (game)
+		free_game(game);
 	exit(0);
 	return (0);
 }

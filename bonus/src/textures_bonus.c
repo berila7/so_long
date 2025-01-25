@@ -6,7 +6,7 @@
 /*   By: mberila <mberila@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 11:49:58 by mberila           #+#    #+#             */
-/*   Updated: 2025/01/25 19:09:14 by mberila          ###   ########.fr       */
+/*   Updated: 2025/01/25 19:14:25 by mberila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,6 @@ static int	init_player_textures(t_game *game)
 static int	init_basic_textures(t_game *game)
 {
 	game->wall = load_texture(game, "./mandatory/textures/wall.xpm");
-	game->player_img = load_texture(game, "./mandatory/textures/player.xpm");
 	game->collect_img = load_texture(game, "./mandatory/textures/collect.xpm");
 	game->exit_img = load_texture(game, "./mandatory/textures/exit.xpm");
 	game->floor= load_texture(game, "./mandatory/textures/floor.xpm");
