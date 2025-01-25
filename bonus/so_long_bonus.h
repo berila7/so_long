@@ -6,7 +6,7 @@
 /*   By: mberila <mberila@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/16 15:11:52 by mberila           #+#    #+#             */
-/*   Updated: 2025/01/25 18:48:38 by mberila          ###   ########.fr       */
+/*   Updated: 2025/01/25 19:32:45 by mberila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@
 # define COLLECT 'C'
 # define EXIT 'E'
 # define PLAYER 'P'
+# define ENEMY 'X'
 
 # define ANIMATION_FRAMES 5
 # define ANIMATION_SPEED 10
@@ -86,6 +87,7 @@ typedef struct s_game
 	void	*collect_img;
 	void	*exit_img;
 	void	*floor;
+	void	*enemy_img;
 
 	char    **map;
 
@@ -101,6 +103,9 @@ typedef struct s_game
     int     exit;
     int     player; 
 	int		moves;
+	int		enemy_dir;
+	int		enemy_y;
+	int		enemy_x;
 	int		exit_pos_x;
 	int		exit_pos_y;
 	int     animation_timer;
@@ -117,11 +122,12 @@ int		init_game_window(t_game *game);
 int		init_mlx(t_game *game);
 int		init_textures(t_game *game);
 int		render_map(t_game *game);
-void	find_player_pos(t_game *game, int *x, int *y);
+void	find_char_pos(t_game *game, int *x, int *y, char c);
 int		close_window(t_game *game);
 void	move_player(t_game *game, int keycode);
 void	*load_texture(t_game *game, char *path);
 void	update_animations(t_game *game);
 void	init_animations(t_game *game);
+void	update_enemy(t_game *game);
 
 #endif

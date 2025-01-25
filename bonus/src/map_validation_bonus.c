@@ -6,7 +6,7 @@
 /*   By: mberila <mberila@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 16:36:06 by mberila           #+#    #+#             */
-/*   Updated: 2025/01/25 16:05:47 by mberila          ###   ########.fr       */
+/*   Updated: 2025/01/25 19:30:05 by mberila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ static int	check_walls(t_game *game)
 static int	is_valid_char(char c)
 {
 	return (c == WALL || c == EMPTY || c == COLLECT
-		|| c == EXIT || c == PLAYER);
+		|| c == EXIT || c == PLAYER || c == ENEMY);
 }
 
 static void	count_elements(t_game *game, char c)

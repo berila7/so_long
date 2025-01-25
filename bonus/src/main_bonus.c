@@ -6,7 +6,7 @@
 /*   By: mberila <mberila@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 15:57:57 by mberila           #+#    #+#             */
-/*   Updated: 2025/01/25 19:15:59 by mberila          ###   ########.fr       */
+/*   Updated: 2025/01/25 19:38:01 by mberila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ int	close_window(t_game *game)
 int	loop_hook(t_game *game)
 {
 	update_animations(game);
+	update_enemy(game);
 	render_map(game);
 	return(0);
 }

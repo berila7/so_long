@@ -6,7 +6,7 @@
 /*   By: mberila <mberila@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 10:27:20 by mberila           #+#    #+#             */
-/*   Updated: 2025/01/25 16:05:33 by mberila          ###   ########.fr       */
+/*   Updated: 2025/01/25 19:41:09 by mberila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ t_game    *init_game(void)
         return (NULL);
     }
     ft_memset(game, 0, sizeof(t_game));
+	game->enemy_dir = 1;
     return (game);
 }
 

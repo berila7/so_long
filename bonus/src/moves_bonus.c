@@ -6,7 +6,7 @@
 /*   By: mberila <mberila@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 12:49:33 by mberila           #+#    #+#             */
-/*   Updated: 2025/01/25 18:58:59 by mberila          ###   ########.fr       */
+/*   Updated: 2025/01/25 19:42:49 by mberila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static void	update_player_position(t_game *game, int new_y, int new_x)
 	int	old_x;
 	int	old_y;
 	
-	find_player_pos(game, &old_x, &old_y);
+	find_char_pos(game, &old_x, &old_y, PLAYER);
 	if (game->map[old_y][old_x] == PLAYER
 		&& old_y == game->exit_pos_y
 		&& old_x == game->exit_pos_x)
@@ -81,7 +81,7 @@ void	move_player(t_game *game, int keycode)
 	int	new_y;
 	int	new_x;
 
-	find_player_pos(game, &x, &y);
+	find_char_pos(game, &x, &y, PLAYER);
 	get_new_position(keycode, &new_x, &new_y, x, y);
 	update_player_direction(game, keycode);
 	if (is_valid_move(game, new_y, new_x))

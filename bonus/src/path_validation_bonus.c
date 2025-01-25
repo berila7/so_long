@@ -6,7 +6,7 @@
 /*   By: mberila <mberila@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 20:12:52 by mberila           #+#    #+#             */
-/*   Updated: 2025/01/25 16:05:54 by mberila          ###   ########.fr       */
+/*   Updated: 2025/01/25 19:32:32 by mberila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ static char	**copy_map(t_game *game)
 	return (copy);
 }
 
-void	find_player_pos(t_game *game, int *x, int *y)
+void	find_char_pos(t_game *game, int *x, int *y, char c)
 {
 	int	i;
 	int	j;
@@ -48,7 +48,7 @@ void	find_player_pos(t_game *game, int *x, int *y)
 		j = 0;
 		while (j < game->width)
 		{
-			if (game->map[i][j] == PLAYER)
+			if (game->map[i][j] == c)
 			{
 				*y = i;
 				*x = j;
@@ -87,7 +87,7 @@ int	check_path(t_game *game)
 	temp_map = copy_map(game);
 	if (!temp_map)
 		return (0);
-	find_player_pos(game, &player_x, &player_y);
+	find_char_pos(game, &player_x, &player_y, PLAYER);
 	collect_count = game->collect;
 	exit_count = game->exit;
 	flood_fill(temp_map, player_x, player_y, game);
