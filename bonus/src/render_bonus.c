@@ -6,7 +6,7 @@
 /*   By: mberila <mberila@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 12:12:51 by mberila           #+#    #+#             */
-/*   Updated: 2025/01/25 16:49:59 by mberila          ###   ########.fr       */
+/*   Updated: 2025/01/25 17:11:12 by mberila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static void	render_tile(t_game *game, int x, int y)
 	else if (tile == PLAYER)
 		put_image(game, game->player_img, x, y);
 	else if (tile == COLLECT)
-		put_image(game, game->collect_s.frames[game->collect_s.current_frame], x, y);
+		put_image(game, game->collect_frames[game->collect_current_frame], x, y);
 	else if (tile == EXIT)
 		put_image(game, game->exit_img, x, y);
 }
