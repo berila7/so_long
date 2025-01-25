@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   textures.c                                         :+:      :+:    :+:   */
+/*   textures_bonus.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mberila <mberila@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 11:49:58 by mberila           #+#    #+#             */
-/*   Updated: 2025/01/25 13:58:23 by mberila          ###   ########.fr       */
+/*   Updated: 2025/01/25 16:33:06 by mberila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../so_long.h"
+#include "../so_long_bonus.h"
 
-static void	*load_texture(t_game *game, char *path)
+void	*load_texture(t_game *game, char *path)
 {
 	void	*img;
 	int		width;

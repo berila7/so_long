@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   main_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mberila <mberila@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 15:57:57 by mberila           #+#    #+#             */
-/*   Updated: 2025/01/25 13:49:57 by mberila          ###   ########.fr       */
+/*   Updated: 2025/01/25 16:49:35 by mberila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../so_long.h"
+#include "../so_long_bonus.h"
 
 void f()
 {
@@ -41,6 +41,13 @@ int	close_window(t_game *game)
 	return (0);
 }
 
+int	loop_hook(t_game *game)
+{
+	update_animations(game);
+	render_map(game);
+	return(0);
+}
+
 static int	setup_game(t_game *game, char *map_path)
 {
 	if (!read_map(game, map_path))
@@ -57,6 +64,7 @@ static int	setup_game(t_game *game, char *map_path)
 		return (0);
 	mlx_key_hook(game->win, key_hook, game);
 	mlx_hook(game->win, ON_DESTROY, NO_EVENT_MASK, close_window, game);
+	mlx_loop_hook(game->mlx, loop_hook, game);
 	return (1);
 }
 
@@ -72,7 +80,7 @@ int	main(int ac, char **av)
     game = init_game();
     if (!game)
         return (1);
-	if (!setup_game(game, av[1]))
+	if (!game || !setup_game(game, av[1]))
 	{
 		free_game(game);
 		return (1);
