@@ -6,7 +6,7 @@
 /*   By: mberila <mberila@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/16 15:11:52 by mberila           #+#    #+#             */
-/*   Updated: 2025/01/25 12:00:43 by mberila          ###   ########.fr       */
+/*   Updated: 2025/01/25 12:13:23 by mberila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,5 +96,6 @@ int		check_path(t_game *game);
 int		init_game_window(t_game *game);
 int		init_mlx(t_game *game);
 int		init_textures(t_game *game);
+int		render_map(t_game *game);
 
 #endif
