@@ -6,11 +6,13 @@
 /*   By: mberila <mberila@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/05 14:06:39 by mberila           #+#    #+#             */
-/*   Updated: 2025/01/25 15:54:20 by mberila          ###   ########.fr       */
+/*   Updated: 2025/01/25 14:10:35 by mberila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../so_long.h"
+
+
 
 static int 	check_extension(char *filename)
 {
