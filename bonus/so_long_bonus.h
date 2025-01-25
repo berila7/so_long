@@ -6,7 +6,7 @@
 /*   By: mberila <mberila@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/16 15:11:52 by mberila           #+#    #+#             */
-/*   Updated: 2025/01/25 19:32:45 by mberila          ###   ########.fr       */
+/*   Updated: 2025/01/25 20:26:34 by mberila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@
 
 # define ANIMATION_FRAMES 5
 # define ANIMATION_SPEED 10
+# define ENEMY_SPEED 30
 
 # define P_RIGHT 0
 # define P_LEFT  1
@@ -68,6 +69,7 @@
 # define ERR_MLX "Error\nMLX initialization failed\n"
 # define ERR_DIMEN "Error\nMap dimensions not set\n"
 # define LOAD_FAIL "Error\nFailed to load texture: %s\n"
+# define ENE_CAUGHT "\nGame Over! Enemy caught you!\n"
 
 /* Colors*/
 # define RESET   "\033[0m"
@@ -106,6 +108,7 @@ typedef struct s_game
 	int		enemy_dir;
 	int		enemy_y;
 	int		enemy_x;
+	int		enemy_timer;
 	int		exit_pos_x;
 	int		exit_pos_y;
 	int     animation_timer;
