@@ -6,7 +6,7 @@
 /*   By: mberila <mberila@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 15:57:57 by mberila           #+#    #+#             */
-/*   Updated: 2025/01/25 12:44:20 by mberila          ###   ########.fr       */
+/*   Updated: 2025/01/25 13:03:33 by mberila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,8 @@ int	key_hook(int keycode, t_game *game)
 	if (keycode == KEYUP || keycode == KEYDOWN
 		|| keycode == KEYLEFT || keycode == KEYRIGHT)
 	{
-		
+		move_player(game, keycode);
+		render_map(game);
 	}
 	return (0);
 }

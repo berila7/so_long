@@ -6,7 +6,7 @@
 /*   By: mberila <mberila@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 20:12:52 by mberila           #+#    #+#             */
-/*   Updated: 2025/01/25 11:34:14 by mberila          ###   ########.fr       */
+/*   Updated: 2025/01/25 12:48:22 by mberila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ static char	**copy_map(t_game *game)
 	return (copy);
 }
 
-static void	find_player_pos(t_game *game, int *x, int *y)
+void	find_player_pos(t_game *game, int *x, int *y)
 {
 	int	i;
 	int	j;

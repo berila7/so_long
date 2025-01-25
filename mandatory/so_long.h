@@ -6,7 +6,7 @@
 /*   By: mberila <mberila@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/16 15:11:52 by mberila           #+#    #+#             */
-/*   Updated: 2025/01/25 12:43:51 by mberila          ###   ########.fr       */
+/*   Updated: 2025/01/25 13:03:00 by mberila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,5 +100,8 @@ int		init_game_window(t_game *game);
 int		init_mlx(t_game *game);
 int		init_textures(t_game *game);
 int		render_map(t_game *game);
+void	find_player_pos(t_game *game, int *x, int *y);
+int		close_window(t_game *game);
+void	move_player(t_game *game, int keycode);
 
 #endif
